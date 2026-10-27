@@ -1,0 +1,47 @@
+table 'Panetration Table'
+	lineageTag: 8d9ba3d2-5b05-4100-8bb7-a0f7d19cff40
+
+	measure Change_Sales_EV_22vs24 = [EV_Sales_2024] - [EV_Sales_2022]
+		formatString: 0
+		lineageTag: 52bbb1c4-f15b-4788-b415-9cce8bcd1137
+
+	measure EV_Sales_2024 = CALCULATE([Total_Veicle_sales_State],electric_vehicle_sales_by_state[Yers] = "2024")
+		formatString: 0
+		lineageTag: 556f3080-035b-4f31-92e8-28796615cebe
+
+	measure EV_Sales_2022 = CALCULATE([Total EV Sale_State],electric_vehicle_sales_by_state[Yers] = "2022")
+		formatString: 0
+		lineageTag: 59d8f80b-9f44-4c63-8c0f-2e97a0f691ad
+
+	measure Total_Vehicle_Sales_2022 = CALCULATE([Total_Veicle_sales_State], electric_vehicle_sales_by_state[Yers]="2022")
+		formatString: 0
+		lineageTag: 1e7f3839-48f0-45c0-830c-fcaee864daa2
+
+	measure Total_vehicle_Sales_2024 = CALCULATE([Total_Veicle_sales_State], electric_vehicle_sales_by_state[Yers] = "2024")
+		formatString: 0
+		lineageTag: e314f510-61cb-423a-a9b4-f0768bae8c14
+
+	measure Change_Sales_Total_Vehicle_22vs24 = [Total_vehicle_Sales_2024]-[Total_Vehicle_Sales_2022]
+		formatString: 0
+		lineageTag: c0ef9179-1078-4095-bd2c-98bee72c07ed
+
+	measure Panetration_Rate_22vs24 = DIVIDE([Change_Sales_EV_22vs24],[Change_Sales_Total_Vehicle_22vs24],0)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 38b281f4-2025-4296-b2a7-55e3d0c49222
+
+	measure 'Penetraion Rate' = ([Total EV Sale_State]/[Total_Veicle_sales_State])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8c17fec6-0717-44ff-ab7c-ba2731fb1657
+
+	partition 'Panetration Table' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

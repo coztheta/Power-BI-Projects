@@ -1,0 +1,59 @@
+table Date
+	lineageTag: bf2a785f-35ae-4d0b-96ef-53ebbcd4c098
+
+	column Date
+		formatString: General Date
+		lineageTag: f5868c95-076d-4c2c-8ba8-c7edeac6d8da
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: ea4425a9-52ee-45e7-9f82-5a1ab6a99373
+			defaultHierarchy: LocalDateTable_b6a445d6-0c03-4a75-90ac-4ec23935967c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year = 'Date'[Date].[Year]
+		formatString: 0
+		lineageTag: bb36604b-1c61-458e-a399-d6bb524ff3d8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month = FORMAT('Date'[Date],"mmm")
+		lineageTag: fef9e38b-f1ca-4582-b506-06c7e2406109
+		summarizeBy: none
+		sortByColumn: MonthIndex
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quater = "Q" & QUARTER('Date'[Date])
+		lineageTag: c581c956-1eaf-43fa-872d-650f715ad47e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month-Yr = FORMAT('Date'[Date],"mmm-yy")
+		lineageTag: d486fd9e-779a-4b38-8a8f-91b57f82ab6e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthIndex = MONTH('Date'[Date])
+		formatString: 0
+		lineageTag: 8f23a306-78db-4dbe-b97f-de9863d5b85e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date = calculated
+		mode: import
+		source = ```
+				CALENDAR(MIN(blinkit_orders[order_date]), MAX(blinkit_orders[order_date]))
+				
+				```
+
+	annotation PBI_Id = eb1d04c45ccb44cea6291dd6fd83303a
+

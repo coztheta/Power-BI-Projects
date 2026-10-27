@@ -1,0 +1,112 @@
+table electric_vehicle_sales_by_state
+	lineageTag: a61921bf-75d9-4b6b-8879-b2c2b8964c71
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 35af447a-67ae-4ab0-bc92-347a1cb0d0b9
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: 93ae4882-258e-41a4-91df-0bc557e9f100
+			defaultHierarchy: LocalDateTable_1940e282-f146-47c0-96d8-16ec90559a25.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column state
+		dataType: string
+		lineageTag: 5671b709-d744-4f68-b294-285d0f6ab840
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column vehicle_category
+		dataType: string
+		lineageTag: 05f476f1-f5c3-4018-b036-2113076b3fdf
+		summarizeBy: none
+		sourceColumn: vehicle_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column electric_vehicles_sold
+		dataType: int64
+		formatString: 0
+		lineageTag: ac140756-2088-4ab2-b4cc-f5595af8e1ec
+		summarizeBy: none
+		sourceColumn: electric_vehicles_sold
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_vehicles_sold
+		dataType: int64
+		formatString: 0
+		lineageTag: 46a3ee73-8ed1-4fd2-a36f-0a5d74e04d98
+		summarizeBy: sum
+		sourceColumn: total_vehicles_sold
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Price_vehicle_state =
+			
+			SWITCH(
+			    TRUE(),
+			    electric_vehicle_sales_by_state[vehicle_category]="2-Wheelers",electric_vehicle_sales_by_state[total_vehicles_sold]*85000,
+			    electric_vehicle_sales_by_state[vehicle_category] = "4-Wheelers" , electric_vehicle_sales_by_state[total_vehicles_sold]*1500000,
+			    BLANK()
+			)
+		formatString: 0
+		lineageTag: b549dc52-a5a3-4844-be6d-639022f566f0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Price_EV_state = ```
+			
+			                    SWITCH(
+			                        TRUE(),
+			                        electric_vehicle_sales_by_state[vehicle_category] = "2-Wheelers" , electric_vehicle_sales_by_state[electric_vehicles_sold]*85000,
+			                        electric_vehicle_sales_by_state[vehicle_category] = "4-Wheelers" , electric_vehicle_sales_by_state[electric_vehicles_sold]*1500000,
+			                        BLANK()
+			                    )
+			```
+		formatString: 0
+		lineageTag: 5c86a777-86d6-4089-904c-e89455e5211b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Finacial_year = ```
+			
+			    CALCULATE(
+			        IFERROR(DATESBETWEEN(electric_vehicle_sales_by_state[date],DATE(2021,04,01), DATE(2022,03,01)),2022))
+			```
+		formatString: 0
+		lineageTag: 248249bf-f566-45e4-aad0-02fc7dae5b37
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Yers = FORMAT(electric_vehicle_sales_by_state[date],"yyyy")
+		lineageTag: fa41bb7e-1731-4993-b428-4e59956145a2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition electric_vehicle_sales_by_state = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\dm1\Downloads\RPC12_Input_For_Participants\datasets\electric_vehicle_sales_by_state.csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"state", type text}, {"vehicle_category", type text}, {"electric_vehicles_sold", Int64.Type}, {"total_vehicles_sold", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

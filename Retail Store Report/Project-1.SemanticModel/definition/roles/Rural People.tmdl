@@ -1,0 +1,7 @@
+role 'Rural People'
+	modelPermission: read
+
+	tablePermission 'Student Survey' = [Store Setting] = "Rural"
+
+	annotation PBI_Id = fc59960826ce4936afc8576575bb78f3
+

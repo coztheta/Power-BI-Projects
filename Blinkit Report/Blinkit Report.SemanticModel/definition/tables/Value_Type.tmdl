@@ -1,0 +1,17 @@
+table Value_Type
+	lineageTag: 13fc0cbf-1263-426a-9553-fd7c05f8e65d
+
+	column Value_Type
+		lineageTag: d7e85e38-c379-4e18-a024-3821afa6fd26
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Master Table[Value_Type]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Value_Type = calculated
+		mode: import
+		source = SUMMARIZE('Master Table','Master Table'[Value_Type])
+
+	annotation PBI_Id = 145829e0abae43d2a2ad65efe51fd808
+

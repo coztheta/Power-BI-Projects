@@ -1,0 +1,207 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "7a7f744f8ee3e2cc633c",
+  "position": {
+    "x": 51.4285714285714,
+    "y": 482.07792207792232,
+    "z": 6000,
+    "height": 175.71428571428572,
+    "width": 525.71428571428578,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Delhi:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#02a376"
+                    }
+                  },
+                  {
+                    "value": " A dense network of charging stations supports high EV sales.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Maharashtra:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#02a376"
+                    }
+                  },
+                  {
+                    "value": " Investments in charging infrastructure have driven significant EV penetration.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Tamil Nadu:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#02a376"
+                    }
+                  },
+                  {
+                    "value": " Expanded charging facilities correlate with rising EV adoption.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Karnataka:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#02a376"
+                    }
+                  },
+                  {
+                    "value": " A growing number of charging stations contributes to increasing EV sales.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Gujarat:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#02a376"
+                    }
+                  },
+                  {
+                    "value": " Strategic development of charging infrastructure has enhanced EV market penetration.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0FA486'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

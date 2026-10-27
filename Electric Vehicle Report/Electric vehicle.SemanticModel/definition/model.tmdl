@@ -1,0 +1,32 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-IN
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["dim_date","electric_vehicle_sales_by_makers","electric_vehicle_sales_by_state","Keymatrix","Q_Y Order Table","Y-Order Rank","M_Y Order Table","Vehicle_Category_Table","Panetration Table","Basic Calculation"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["CalcGroup","DevMode"]
+
+ref table dim_date
+ref table DateTableTemplate_add7618f-d452-4633-8f6e-f0e8722b271a
+ref table LocalDateTable_a20bb2fc-e27c-41cd-9371-386eb7a62eaf
+ref table electric_vehicle_sales_by_makers
+ref table electric_vehicle_sales_by_state
+ref table Keymatrix
+ref table Dynamic_Date
+ref table 'Q_Y Order Table'
+ref table 'Y-Order Rank'
+ref table 'M_Y Order Table'
+ref table Vehicle_Category_Table
+ref table 'Panetration Table'
+ref table 'Basic Calculation'
+ref table LocalDateTable_1940e282-f146-47c0-96d8-16ec90559a25
+
+ref cultureInfo en-US
+

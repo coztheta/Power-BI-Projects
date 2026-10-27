@@ -1,0 +1,118 @@
+table dim_date
+	lineageTag: de6ae8ba-95d9-48ad-a3e0-ef7dc4842daa
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d5f01de4-bbe6-4901-802b-3c37d71ec9aa
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: 4566608e-fd4f-483b-965d-8fec6701f4c9
+			defaultHierarchy: LocalDateTable_a20bb2fc-e27c-41cd-9371-386eb7a62eaf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column fiscal_year
+		dataType: string
+		lineageTag: 812128b7-c7a0-4e8b-9638-a8e4dfceb0df
+		summarizeBy: none
+		sourceColumn: fiscal_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: string
+		lineageTag: 96719902-a5e2-4797-96be-16acdbab41ff
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year = FORMAT(dim_date[date],"yyyy")
+		lineageTag: 1cc84496-939d-4fc8-bc63-74867b4dd851
+		summarizeBy: none
+		sortByColumn: Year_Orderrank
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month = FORMAT(dim_date[date],"mmm")
+		lineageTag: f9983199-7a55-4531-843e-03c9f9a6f92e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month-Year = dim_date[Month] & "-" & RIGHT(dim_date[Year],2)
+		lineageTag: f4664ba7-3294-4c29-909c-fd1ce3daec25
+		summarizeBy: none
+		sortByColumn: Month_Order_Rank
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quater-Year = dim_date[quarter] & "-" & RIGHT(dim_date[fiscal_year],2)
+		lineageTag: 438dd27c-e4ee-47d1-b860-35ed5fb00f0e
+		summarizeBy: none
+		sortByColumn: Quater_OrderRank
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quater_OrderRank = RELATED('Q_Y Order Table'[Order Rank])
+		formatString: 0
+		lineageTag: 11fe2d4f-592d-453a-959e-2d5c837cfc98
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year_Orderrank = RELATED('Y-Order Rank'[Order_Rank])
+		formatString: 0
+		lineageTag: c2a93ba9-6198-4a60-8e76-35d7c25a80c0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_Order_Rank = RELATED('M_Y Order Table'[Order_Rank])
+		formatString: 0
+		lineageTag: 4d6d2f10-c8ce-4090-a1d2-7cb2d238157e
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Finacial_Year = SELECTEDVALUE(dim_date[fiscal_year],0)
+		dataType: string
+		lineageTag: 5dfd04c4-11fc-4ab9-bc0e-acadec0f3a5a
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Actual_date = FORMAT(dim_date[date],"dd-mm-yyyy")
+		lineageTag: c278fcd1-6704-4288-96eb-28ce9333a22c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\dm1\Downloads\RPC12_Input_For_Participants\datasets\dim_date.csv"),[Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"quarter", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,15 @@
+expression TCS =
+		(stock as text) as table=>
+		
+		let
+		    Source = Csv.Document(Web.Contents("https://query1.finance.yahoo.com/v7/finance/download/"&stock&"?period1=1565935426&period2=1723788178&interval=1d&events=history&includeAdjustedClose=true"),[Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Open", type number}, {"High", type number}, {"Low", type number}, {"Close", type number}, {"Adj Close", type number}, {"Volume", Int64.Type}})
+		in
+		    #"Changed Type"
+	lineageTag: 7a33039d-0eb7-4b13-b65f-f93cb3aa9cbb
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+

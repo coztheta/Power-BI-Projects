@@ -1,0 +1,74 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 436,
+            "y": 0
+          },
+          "nodeIndex": "Color Sheet",
+          "nodeLineageTag": "d95bba72-8910-4bf3-8f87-40a34ca72b06",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 37,
+            "y": 193
+          },
+          "nodeIndex": "Stocks Data",
+          "nodeLineageTag": "c074a5c2-07c2-4b87-8585-56ee21d0a25a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 907,
+            "y": 168
+          },
+          "nodeIndex": "Table",
+          "nodeLineageTag": "a76c9f21-9a41-4ed3-b20f-b0badc062541",
+          "size": {
+            "height": 336,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 383,
+            "y": 475
+          },
+          "nodeIndex": "Date_Category_Table",
+          "nodeLineageTag": "2420d104-d966-435a-aa42-0fcc8427d34b",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 4
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

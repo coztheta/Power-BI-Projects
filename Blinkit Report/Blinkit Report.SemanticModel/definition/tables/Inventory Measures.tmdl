@@ -1,0 +1,84 @@
+table 'Inventory Measures'
+	lineageTag: d99759df-bbab-41ae-a53c-24c69dc7820e
+
+	measure 'Quantity by Stock_Received' = CALCULATE(SUM(Inventory[Quantity]), Inventory[Stock_Type] = "stock_received" )
+		formatString: 0
+		lineageTag: 343cdf5b-e0d7-4d72-a588-26f4f3c960c9
+
+	measure 'Quantity by Damaged_stock' = ```
+			CALCULATE(SUM(Inventory[Quantity]), Inventory[Stock_Type] = "damaged_stock") 
+			```
+		formatString: 0
+		lineageTag: d400d125-d842-4021-aa29-817681e775a8
+
+	measure Stock_Received_inventrory_value = CALCULATE(SUM(Inventory[Value]), Inventory[Stock_Type] ="stock_received")
+		formatString: 0
+		lineageTag: aca117fa-2b0e-4213-a6ea-ca91ab2db8d5
+
+	measure Damaged_Stock_inventory_value = CALCULATE(SUM(Inventory[Value]) , Inventory[Stock_Type] = "damaged_stock")
+		lineageTag: a7a088c0-55fe-435a-b2c8-c1ed7aa96745
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure sold_stock = CALCULATE(SUM('Master Table'[Value]), 'Master Table'[Value_Type] = "Quantity")
+		lineageTag: 0e19a9c3-7162-4635-9057-50f822ac0f65
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Measure = CALCULATE(SUM('Master Table'[Value]) , 'Master Table'[Value_Type] = "Quantity")
+		lineageTag: 11d4ea10-9262-4023-beba-8b3cb721ae2d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Avaliable_Stock_by_Quantity = [Quantity by Stock_Received] - [sold_stock]
+		lineageTag: e9ec4c4a-6d97-4668-ae7f-52a8dff4dddf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Sold_Available_by_Value = CALCULATE(SUM('Master Table'[Value]), 'Master Table'[Value_Type] = "Value")
+		lineageTag: 00ff58fc-722e-4d2e-8ff3-9d9d6ad1363b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Avaliable_Stock_by_Value = [Stock_Received_inventrory_value] - [Sold_Available_by_Value]
+		lineageTag: d86e553d-c533-44df-a74b-79b57b9597e1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avaliable stock %' = DIVIDE([Avaliable_Stock_by_Value], [Stock_Received_inventrory_value])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 20a4fe44-db36-4f08-b6d2-e41d3d5f4a4d
+
+	measure 'Damaged Stock %' = DIVIDE([Damaged_Stock_inventory_value], [Stock_Received_inventrory_value])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 26e1ae05-1ceb-479a-b58c-1c5932adbeb2
+
+	measure 'Quantity by Stock_Received by 2023' = CALCULATE(SUM(Inventory[Quantity]), Inventory[Stock_Type] = "stock_received" , 'Date'[Year] = 2023)
+		formatString: 0
+		lineageTag: 579d94e7-6731-419b-9021-fa853b4a4530
+
+	measure 'Quantity by Stock_Received by 2024' = CALCULATE(SUM(Inventory[Quantity]), Inventory[Stock_Type] = "stock_received" , 'Date'[Year] = 2024)
+		formatString: 0
+		lineageTag: 9431afc5-6546-461c-a8b6-ef4d45a356e9
+
+	column Column1
+		dataType: string
+		lineageTag: 4997a662-9896-4c0a-a488-682ee765c7ea
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Inventory Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

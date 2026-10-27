@@ -1,0 +1,78 @@
+table Marketing
+	lineageTag: 6f93c876-ff5d-4ce4-b507-2c5e1846c634
+
+	column campaign_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 14b1c4f0-2385-415c-8c74-40efffd5fa6a
+		summarizeBy: sum
+		sourceColumn: campaign_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column campaign_name
+		dataType: string
+		lineageTag: c2325585-b335-4b8c-9fd2-015123ad0e69
+		summarizeBy: none
+		sourceColumn: campaign_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5b522901-aa1b-4d5f-91cf-29df3317205f
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column target_audience
+		dataType: string
+		lineageTag: 235a496f-7f01-4184-8bdb-8ec917774638
+		summarizeBy: none
+		sourceColumn: target_audience
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel
+		dataType: string
+		lineageTag: 8f54184a-26b0-45e8-8649-d9784325f06f
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attribute
+		dataType: string
+		lineageTag: 40057b40-53fa-418b-81cc-2a2bc0494eb0
+		summarizeBy: none
+		sourceColumn: Attribute
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: double
+		lineageTag: 31134be4-c665-4ab1-a295-2a5ef56b4b3d
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Marketing = m
+		mode: import
+		source =
+				let
+				    Source = blinkit_marketing_performance,
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(Source, {"campaign_id", "campaign_name", "date", "target_audience", "channel"}, "Attribute", "Value")
+				in
+				    #"Unpivoted Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

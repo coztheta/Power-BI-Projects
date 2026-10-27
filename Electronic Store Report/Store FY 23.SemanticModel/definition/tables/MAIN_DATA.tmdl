@@ -1,0 +1,721 @@
+table MAIN_DATA
+	lineageTag: 4d902117-6395-4269-8c98-6490177da57c
+
+	column QTR
+		dataType: string
+		lineageTag: 5888e63f-bb1f-4137-b52c-4cb4f9af41e0
+		summarizeBy: none
+		sourceColumn: QTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column WK
+		dataType: string
+		lineageTag: a8199e89-faa8-45c4-a547-a37ab89cf2da
+		summarizeBy: none
+		sourceColumn: WK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 1c97eac1-c8ed-4dbe-9b65-6f679d1b28ef
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Branch
+		dataType: string
+		lineageTag: 998fe613-07d8-42d9-bb33-4da4bfe4bee1
+		summarizeBy: none
+		sourceColumn: Branch
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Branch City'
+		dataType: string
+		lineageTag: 6a4d00c6-3e23-42fd-b2df-873cc2643d5a
+		summarizeBy: none
+		sourceColumn: Branch City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Apple ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 943956ca-1858-4c4b-8948-75c3b700a8aa
+		summarizeBy: count
+		sourceColumn: Apple ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TXNDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5b973013-7e11-457d-8b8f-5b9d16fa37c4
+		summarizeBy: none
+		sourceColumn: TXNDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TXNTime
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: c2834d07-2f53-4816-8fc8-12cf1f5b85f6
+		summarizeBy: none
+		sourceColumn: TXNTime
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column 'Transaction Type'
+		dataType: string
+		lineageTag: a2163a8e-61bb-408c-a69a-0fcaf58afbb2
+		summarizeBy: none
+		sourceColumn: Transaction Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column TXNName
+		dataType: string
+		lineageTag: 1674d905-66f3-4505-8787-f92f71fae00c
+		summarizeBy: none
+		sourceColumn: TXNName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: c52b3e95-d2c0-4361-a2a8-7226b3789179
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Voucher Type'
+		dataType: string
+		lineageTag: a9f3e9dd-0596-48d1-bcff-21f8521680be
+		summarizeBy: none
+		sourceColumn: Voucher Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FulFillment Mode'
+		dataType: string
+		lineageTag: 58963a8e-da41-4c0d-9a2d-99bde3b3deeb
+		summarizeBy: none
+		sourceColumn: FulFillment Mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Place of Supply'
+		dataType: string
+		lineageTag: 37b6e7dd-b4d7-4dbd-8b17-67edba46eadc
+		summarizeBy: none
+		sourceColumn: Place of Supply
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Code'
+		dataType: string
+		lineageTag: 97a5fdd8-96bb-43a5-b5a4-844fb6cb7106
+		summarizeBy: none
+		sourceColumn: Customer Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Name'
+		dataType: string
+		lineageTag: 1976df0b-5db7-478e-b1b0-8c8c4a2b5026
+		summarizeBy: none
+		sourceColumn: Customer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Type'
+		dataType: string
+		lineageTag: 71776a79-7c69-49c1-a436-ebdd1e72e86f
+		summarizeBy: none
+		sourceColumn: Customer Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Print Mobile No'
+		dataType: int64
+		formatString: 0
+		lineageTag: 11ac5063-e685-488f-979b-c9265b147807
+		summarizeBy: sum
+		sourceColumn: Print Mobile No
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: ffd0ea6c-c8f5-4065-af33-6418a6f92018
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Group'
+		dataType: string
+		lineageTag: d39622d3-60ac-4ce9-9f86-2ffb6ba1f457
+		summarizeBy: none
+		sourceColumn: Customer Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contact Person'
+		dataType: string
+		lineageTag: d8ff1c48-2307-4996-992a-9e30dbd1bd22
+		summarizeBy: none
+		sourceColumn: Contact Person
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GSTIN No.'
+		dataType: string
+		lineageTag: a4db3ead-febc-4cec-bdf3-64a1f0e77837
+		summarizeBy: none
+		sourceColumn: GSTIN No.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Old Device'
+		dataType: string
+		lineageTag: 996cc269-4ac2-435b-b063-e1dc387b635a
+		summarizeBy: none
+		sourceColumn: Customer Old Device
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Old Device Details'
+		dataType: string
+		lineageTag: 409cd70e-1d07-42bf-a392-c5fd6b62b726
+		summarizeBy: none
+		sourceColumn: Customer Old Device Details
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Old Device IMEI No.'
+		dataType: string
+		lineageTag: b5175d3d-c70e-4a44-919c-292a6a9fd62e
+		summarizeBy: none
+		sourceColumn: Old Device IMEI No.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vodafone Voucher No.'
+		dataType: string
+		lineageTag: d1a78762-94c6-45d2-8aae-0e47791d48eb
+		summarizeBy: none
+		sourceColumn: Vodafone Voucher No.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vodafone OTP No.'
+		dataType: string
+		lineageTag: ef06d581-b5e3-41e7-9594-a0a915f770fc
+		summarizeBy: none
+		sourceColumn: Vodafone OTP No.
+
+		annotation SummarizationSetBy = Automatic
+
+	column Executive
+		dataType: string
+		lineageTag: 233aff1c-e5dc-4364-9dc0-60ea52a24e24
+		summarizeBy: none
+		sourceColumn: Executive
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Executive Code'
+		dataType: string
+		lineageTag: abf469c5-4b8d-4abd-bff2-8ff8c4c12719
+		summarizeBy: none
+		sourceColumn: Executive Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scheme
+		dataType: string
+		lineageTag: 0f81ebba-1731-467f-9c32-e0c12c30581e
+		summarizeBy: none
+		sourceColumn: Scheme
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Source'
+		dataType: string
+		lineageTag: 518626d6-2c5e-47e0-8b3f-3a3f43e77106
+		summarizeBy: none
+		sourceColumn: Lead Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column Affordability
+		dataType: string
+		lineageTag: bb7877f7-9e5a-4352-ba2a-4458ead92205
+		summarizeBy: none
+		sourceColumn: Affordability
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'E Way Bill No'
+		dataType: string
+		lineageTag: df39d519-9b34-402e-86df-4474f11f18b8
+		summarizeBy: none
+		sourceColumn: E Way Bill No
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tax Group'
+		dataType: string
+		lineageTag: ebeeac20-5f85-4f3e-9be5-f003053f3f1a
+		summarizeBy: none
+		sourceColumn: Tax Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Code'
+		dataType: string
+		lineageTag: 7dabc653-3a1f-4504-936e-9ae54e1340d1
+		summarizeBy: none
+		sourceColumn: Item Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'UPC Code'
+		dataType: string
+		lineageTag: 93b10df0-271f-49ed-a822-8884ead89e29
+		summarizeBy: none
+		sourceColumn: UPC Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Name'
+		dataType: string
+		lineageTag: a6d81873-9e80-45d7-bb1e-c1df796776d5
+		summarizeBy: none
+		sourceColumn: Item Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Type'
+		dataType: string
+		lineageTag: 1f8b34a9-0eba-4f5e-b4f2-472673c1f33f
+		summarizeBy: none
+		sourceColumn: Item Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Unit'
+		dataType: string
+		lineageTag: 6c225b40-5049-40e7-9356-e9daa77661ee
+		summarizeBy: none
+		sourceColumn: Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column UOM
+		dataType: string
+		lineageTag: 1df23d8b-3f73-43e9-a6e7-e206d784b0d2
+		summarizeBy: none
+		sourceColumn: UOM
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'HSN Code'
+		dataType: string
+		lineageTag: 9f905963-0440-479e-8c03-15483883b649
+		summarizeBy: none
+		sourceColumn: HSN Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: a77392cb-0058-43f1-a649-70e1488d778e
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column LOB
+		dataType: string
+		lineageTag: 3e900c78-e46c-4cf6-b562-c2e7c3b25cae
+		summarizeBy: none
+		sourceColumn: LOB
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LOB NEW'
+		dataType: string
+		lineageTag: 8c0bdbab-fb64-4155-a31c-09c6e171754b
+		summarizeBy: none
+		sourceColumn: LOB NEW
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item List'
+		dataType: string
+		lineageTag: f6dc9da2-b5f9-4a0d-87e2-26c3f354e5d6
+		summarizeBy: none
+		sourceColumn: Item List
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 5f3067a1-02d6-4e1a-8717-a30811d988d6
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Family'
+		dataType: string
+		lineageTag: cc93ce90-f308-4b94-b799-fbd3313e7576
+		summarizeBy: none
+		sourceColumn: Product Family
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 7c2cba7d-7bad-4830-ae3a-8a68b5e8ffab
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Variant Type'
+		dataType: string
+		lineageTag: b85d7c56-6834-4069-b827-512bcb60d93e
+		summarizeBy: none
+		sourceColumn: Variant Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Capacity
+		dataType: string
+		lineageTag: 49eaf3f2-d2d8-412f-b263-baa690626d79
+		summarizeBy: none
+		sourceColumn: Capacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: 7b3ebaae-1dcc-49c6-b615-c85cfc0e9a8f
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Agreement Number'
+		dataType: string
+		lineageTag: c27c34fe-3d5a-4041-8dc1-d01ba1f7cb9b
+		summarizeBy: none
+		sourceColumn: Agreement Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sale Type'
+		dataType: string
+		lineageTag: 0ea76f4f-4804-4f47-ae51-4b7901651873
+		summarizeBy: none
+		sourceColumn: Sale Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'No. Of Sets'
+		dataType: string
+		lineageTag: 44ec8d3c-a4d1-42f8-a252-e85b50e5928b
+		summarizeBy: none
+		sourceColumn: No. Of Sets
+
+		annotation SummarizationSetBy = Automatic
+
+	column Remark
+		dataType: string
+		lineageTag: 5f943645-a730-4dd5-9c46-e445be1d398b
+		summarizeBy: none
+		sourceColumn: Remark
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: dbf1191d-a5e0-4b1b-939b-3273b7268f4f
+		summarizeBy: sum
+		sourceColumn: Invoice Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quantity Cancelled'
+		dataType: string
+		lineageTag: 65c0c664-246a-4a85-ba91-d48a8f1a3d58
+		summarizeBy: none
+		sourceColumn: Quantity Cancelled
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Serial No.'
+		dataType: string
+		lineageTag: d539190c-b385-4ec3-9367-449ba269e559
+		summarizeBy: none
+		sourceColumn: Serial No.
+
+		annotation SummarizationSetBy = Automatic
+
+	column IMEI
+		dataType: string
+		lineageTag: b0e039e0-1884-4836-8d7b-5ca559eb1806
+		summarizeBy: none
+		sourceColumn: IMEI
+
+		annotation SummarizationSetBy = Automatic
+
+	column Godown
+		dataType: string
+		lineageTag: ecec4feb-6da2-4cff-bdee-550ab6438285
+		summarizeBy: none
+		sourceColumn: Godown
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stock Age'
+		dataType: string
+		lineageTag: 66b8d5ac-1820-49c3-b862-a36e5a1d4643
+		summarizeBy: none
+		sourceColumn: Stock Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rate
+		dataType: string
+		lineageTag: e5aeb8ac-b249-4261-b4ad-0845224a8cc7
+		summarizeBy: none
+		sourceColumn: Rate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Actual MRP'
+		dataType: string
+		lineageTag: b59de461-e6f2-46c6-8ad4-cf627be5c1ac
+		summarizeBy: none
+		sourceColumn: Actual MRP
+
+		annotation SummarizationSetBy = Automatic
+
+	column MRP
+		dataType: string
+		lineageTag: e0759189-5cef-4193-b61a-c5e634a5a510
+		summarizeBy: none
+		sourceColumn: MRP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Discount Percentage'
+		dataType: string
+		lineageTag: 8c5f25d5-06b4-4e82-8620-29f1a6844121
+		summarizeBy: none
+		sourceColumn: Discount Percentage
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRP Discount'
+		dataType: string
+		lineageTag: cf8f198c-cb42-46e6-a926-ca6d16dbb54f
+		summarizeBy: none
+		sourceColumn: MRP Discount
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Taxable Amount'
+		dataType: decimal
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		lineageTag: 24417d2b-7c90-4812-b616-b74b803b9778
+		summarizeBy: sum
+		sourceColumn: Taxable Amount
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+
+	column 'SGST 9%'
+		dataType: string
+		lineageTag: ef1f670a-9c8a-4e64-9351-4c44659bbe44
+		summarizeBy: none
+		sourceColumn: SGST 9%
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CGST 9%'
+		dataType: string
+		lineageTag: 5fa7b18e-ff1d-40ab-a03c-3c04a7ffc597
+		summarizeBy: none
+		sourceColumn: CGST 9%
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'IGST 18%'
+		dataType: string
+		lineageTag: 08941d2b-4fc3-4709-b76e-1c78d2badc6a
+		summarizeBy: none
+		sourceColumn: IGST 18%
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'IGST 0%'
+		dataType: string
+		lineageTag: 669e78ef-702a-4752-84e4-6dc1c6188e24
+		summarizeBy: none
+		sourceColumn: IGST 0%
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GP Amount'
+		dataType: double
+		lineageTag: faead3c1-4192-4023-a636-583444b9ccec
+		summarizeBy: sum
+		sourceColumn: GP Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'GP (%)'
+		dataType: double
+		lineageTag: a935917d-e45c-4a62-8c9e-e087aa803559
+		summarizeBy: sum
+		sourceColumn: GP (%)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Loyalty Point'
+		dataType: string
+		lineageTag: 95cfc964-efba-40ee-aabe-8092df8e5eef
+		summarizeBy: none
+		sourceColumn: Loyalty Point
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Loyalty Amount'
+		dataType: string
+		lineageTag: 4e20b763-fe2d-4798-8971-ead79190fcac
+		summarizeBy: none
+		sourceColumn: Loyalty Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total
+		dataType: string
+		lineageTag: 5f12c110-96e0-4314-a193-8db4ec61fd67
+		summarizeBy: count
+		sourceColumn: Total
+
+		annotation SummarizationSetBy = User
+
+	column Column77
+		dataType: string
+		lineageTag: 002baba4-0627-4304-85b9-0baa0f8a02db
+		summarizeBy: none
+		sourceColumn: Column77
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column78
+		dataType: string
+		lineageTag: 0cbaafb3-5c1a-4930-8c0d-aaa2266b8ce6
+		summarizeBy: none
+		sourceColumn: Column78
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column79
+		dataType: string
+		lineageTag: b142f80e-4e71-4e97-b7bc-d73407d26abf
+		summarizeBy: none
+		sourceColumn: Column79
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Avg Basket Size' =
+			
+			DIVIDE(
+				SUM('MAIN_DATA'[Invoice Quantity]),
+				DISTINCTCOUNT('MAIN_DATA'[TXNName])
+			)
+		formatString: 0.0
+		lineageTag: b6a91087-b7d1-4a25-9aba-99e84a363551
+		summarizeBy: sum
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column Profitability =
+			
+			DIVIDE(SUM('MAIN_DATA'[GP Amount]), SUM('MAIN_DATA'[Taxable Amount]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 3704121b-f9b1-49f7-b0c8-10187821ff51
+		summarizeBy: sum
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column Profit =
+			
+			DIVIDE(SUM('MAIN_DATA'[GP Amount]), SUM('MAIN_DATA'[Taxable Amount]))
+		lineageTag: 02c53585-2590-4b1e-ac44-8c08dc6b77df
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Profit1 = MAIN_DATA[Total]-MAIN_DATA[Rate]
+		lineageTag: b8ad7c82-5d06-444e-a394-d50245e4c1a0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column profitability1 = DIVIDE(SUM( MAIN_DATA[GP Amount]),SUM(MAIN_DATA[Taxable Amount]))
+		lineageTag: cefb9da5-bebb-46dc-a948-ff7920d90ebb
+		summarizeBy: sum
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition MAIN_DATA-3d5bb32d-67da-41e1-b3be-d42a26f1ade7 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\JAYDEEP\Apple Report FY 23\Apple Report FY-23.xlsx"), null, true),
+				    MAIN_DATA_Sheet = Source{[Item="MAIN_DATA",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(MAIN_DATA_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"QTR", type text}, {"Month", type text}, {"Branch", type text}, {"Branch City", type text}, {"Apple ID", Int64.Type}, {"TXNDate", type date}, {"TXNTime", type time}, {"Transaction Type", type text}, {"TXNName", type text}, {"Status", type text}, {"Voucher Type", type text}, {"FulFillment Mode", type text}, {"Place of Supply", type text}, {"Customer Code", type text}, {"Customer Name", type text}, {"Customer Type", type text}, {"Print Mobile No", Int64.Type}, {"Email", type text}, {"LOB", type text}, {"LOB NEW", type text}, {"Item List", type text}, {"Category", type text}, {"Taxable Amount", Currency.Type}, {"Item Code", type text}, {"Item Name", type text}, {"Invoice Quantity", Int64.Type}, {"GP Amount", type number}, {"GP (%)", type number}}),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Changed Type", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Removed Blank Rows",{{"WK", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+

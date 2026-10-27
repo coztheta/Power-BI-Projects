@@ -1,0 +1,57 @@
+table electric_vehicle_sales_by_makers
+	lineageTag: 4db67ede-d488-43c1-b52a-a436bbdb97cb
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 480d053e-4ba3-4d57-9d59-55f722995ede
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column vehicle_category
+		dataType: string
+		lineageTag: bd0574e5-e4ed-4aad-98e7-0aacbe7ba962
+		summarizeBy: none
+		sourceColumn: vehicle_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column maker
+		dataType: string
+		lineageTag: fac28ddc-c174-4c28-b8b7-ca5551795cbc
+		summarizeBy: none
+		sourceColumn: maker
+
+		annotation SummarizationSetBy = Automatic
+
+	column electric_vehicles_sold
+		dataType: int64
+		formatString: 0
+		lineageTag: c0f21a47-e24b-4c57-abfd-4297878ad8a4
+		summarizeBy: sum
+		sourceColumn: electric_vehicles_sold
+
+		annotation SummarizationSetBy = User
+
+	column year = FORMAT(electric_vehicle_sales_by_makers[date],"yyyy")
+		lineageTag: 3d3ec65a-0114-409a-b779-b2ba4678ae9a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition electric_vehicle_sales_by_makers = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\dm1\Downloads\RPC12_Input_For_Participants\datasets\electric_vehicle_sales_by_makers.csv"),[Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"vehicle_category", type text}, {"maker", type text}, {"electric_vehicles_sold", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

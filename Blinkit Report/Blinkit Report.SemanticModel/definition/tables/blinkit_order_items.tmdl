@@ -1,0 +1,62 @@
+table blinkit_order_items
+	lineageTag: e82db890-d75b-4ea8-9618-7a35baf22909
+
+	column order_id
+		dataType: int64
+		formatString: 0
+		lineageTag: bc947ada-21da-4e5c-a2db-dc7b20c0f172
+		summarizeBy: sum
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 558350e4-a099-46f3-b56a-b019c67f9220
+		summarizeBy: sum
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 76e7d099-4c1a-4428-97a9-0af834f306d8
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_price
+		dataType: double
+		lineageTag: 13a1fb4e-4e08-4c7f-bace-153fb61f15d8
+		summarizeBy: sum
+		sourceColumn: unit_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Price' = blinkit_order_items[quantity] * blinkit_order_items[unit_price]
+		lineageTag: 61d8adb8-9644-4ee4-8b44-58a79d40205a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition blinkit_order_items = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Data Analyst\Blinkit Report\Dataset\blinkit_order_items.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"order_id", Int64.Type}, {"product_id", Int64.Type}, {"quantity", Int64.Type}, {"unit_price", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

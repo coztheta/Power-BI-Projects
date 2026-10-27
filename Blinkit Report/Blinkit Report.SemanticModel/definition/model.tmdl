@@ -1,0 +1,59 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Category_Icon","Rating_Icon","blinkit_customer_feedback","blinkit_customers","blinkit_delivery_performance","blinkit_inventory","blinkit_inventoryNew","blinkit_marketing_performance","blinkit_order_items","blinkit_orders","blinkit_products","measure","Master Table","Inventory","Marketing","Configration_Table","Sales_Measure","Customer Measure","Time Period Table","Feedback Measures","Inventory Measures","Marketing Measures"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","DevMode"]
+
+ref table Category_Icon
+ref table Rating_Icon
+ref table blinkit_customer_feedback
+ref table DateTableTemplate_3e95e0f0-e86a-4e97-8d19-21ec892bd0fb
+ref table LocalDateTable_1d7e53e3-7eed-42cf-8e84-8dd5e60e77b5
+ref table blinkit_customers
+ref table LocalDateTable_53aa7be7-ce4b-4c92-90a7-e254173dd468
+ref table blinkit_delivery_performance
+ref table LocalDateTable_d9627868-2ba1-4ad5-abaf-510724a1c01f
+ref table LocalDateTable_9b201db7-8fc8-442b-ba78-e46f144e0b80
+ref table blinkit_inventory
+ref table blinkit_inventoryNew
+ref table LocalDateTable_7db96aaf-31e6-4d8f-940c-b4f2019d5aae
+ref table blinkit_marketing_performance
+ref table LocalDateTable_bc83dcb1-7bef-4ae5-966d-552815ec1651
+ref table blinkit_order_items
+ref table blinkit_orders
+ref table LocalDateTable_3487195e-4f47-4c4e-a2f6-96fd474f1e67
+ref table LocalDateTable_c37a43c7-dc59-42dd-9e34-0b37c2b51f87
+ref table blinkit_products
+ref table Date
+ref table LocalDateTable_b6a445d6-0c03-4a75-90ac-4ec23935967c
+ref table measure
+ref table 'Master Table'
+ref table LocalDateTable_c6e824ce-d575-40eb-9fc9-0d2048935eaf
+ref table LocalDateTable_66c81657-689c-482f-910b-43ed411c999b
+ref table LocalDateTable_6a39cdd9-812d-49ec-9580-21b93c0a297d
+ref table LocalDateTable_ba9bc4be-56fc-4dfa-a016-ca592cf45889
+ref table Inventory
+ref table Marketing
+ref table Auto_Date
+ref table Configration_Table
+ref table Value_Type
+ref table Sales_Measure
+ref table Rank_Table
+ref table Year_Quater_Month
+ref table 'Customer Measure'
+ref table 'Time Period Table'
+ref table ORDER_Parameter
+ref table 'Feedback Measures'
+ref table 'Inventory Measures'
+ref table 'Marketing Measures'
+
+ref cultureInfo en-US
+

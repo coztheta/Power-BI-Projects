@@ -1,0 +1,33 @@
+table Categories
+	lineageTag: d7830790-a489-4a8a-bb40-8c02f191a1bf
+
+	column CategoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b27e7078-d0b2-4a65-8273-745c65d4563d
+		summarizeBy: none
+		sourceColumn: CategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: b75d2c54-3c56-4d6a-b9a6-757ee6f7cb11
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Categories-76344da6-706a-45c8-993f-975190286a83 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\HP\Downloads\Dimensions\Categories.xlsx"), null, true),
+				    Categories_Sheet = Source{[Item="Categories",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Categories_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CategoryKey", Int64.Type}, {"Category", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

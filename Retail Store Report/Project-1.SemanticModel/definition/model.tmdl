@@ -1,0 +1,24 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Student Survey"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'Student Survey'
+ref table DateTableTemplate_231ef18e-fda8-4f30-a126-c3425a138152
+ref table LocalDateTable_e4bd2cee-7d74-4b51-b7df-a127e7d6d988
+
+ref role 'Rural People'
+ref role 'Urban People'
+ref role 'Suburb People'
+
+ref cultureInfo en-US
+

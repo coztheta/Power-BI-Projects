@@ -1,0 +1,76 @@
+table Table
+	lineageTag: a76c9f21-9a41-4ed3-b20f-b0badc062541
+
+	measure Latest = CALCULATE(MAX('Stocks Data'[Date]), 'Stocks Data'[Volume]<>BLANK())
+		formatString: General Date
+		lineageTag: 7c626b40-4453-4d59-93de-042c2065d5a4
+
+	measure Open_Value =
+			VAR dt =[Latest]
+			
+			RETURN
+			CALCULATE(SUM('Stocks Data'[Open]), 'Stocks Data'[Date] = dt)
+		formatString: "₹"\ #,0.###############;#,0.###############\ -"₹";"₹"\ #,0.###############
+		lineageTag: c4b69858-2cf9-4f44-92c3-e9306fa6ad7b
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	measure Close_Value =
+			VAR dt = [Latest]
+			RETURN
+			CALCULATE(SUM('Stocks Data'[Close]),'Stocks Data'[Date] = dt)
+		formatString: "₹"\ #,0.###############;#,0.###############\ -"₹";"₹"\ #,0.###############
+		lineageTag: fc1e8ca4-81de-403a-b167-026e54da46a9
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	measure Open_close_diff = [Open_Value] -[Close_Value]
+		formatString: "₹"\ #,0.###############;#,0.###############\ -"₹";"₹"\ #,0.###############
+		lineageTag: 14f3a238-ed58-4ed0-9792-b2e1652f3279
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	measure Diff_% = DIVIDE([Open_close_diff], [Open_Value])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6a7eb055-d131-4d27-aefc-73436551e143
+
+	measure 'Green Arrow' = ```
+			"https://i.postimg.cc/3rj54VGm/triangle-1.png" 
+			```
+		lineageTag: 3ea1cd5a-8318-4406-9151-288e73f3f9aa
+
+	measure 'Red Arrow' = "https://i.postimg.cc/Nf4cVSfB/down.png"
+		lineageTag: c3b47f7f-42ef-4319-b826-f0d708789f9d
+
+	measure Open_Differan_cond = IF([Open_close_diff] > 0 , [Green Arrow], [Red Arrow])
+		lineageTag: 14e28219-ec31-40d9-927a-3e54d6eee4fa
+
+	measure Diff_%_Condition = IF([Diff_%] > 0 ,[Green Arrow] , [Red Arrow])
+		lineageTag: 3756d766-d253-43da-8cd1-fd043495f57b
+
+	measure Name = ```
+			"Stock Dashborad" 
+			```
+		lineageTag: b0529788-ff16-4684-9184-46e85544f711
+
+	column Column1
+		dataType: string
+		lineageTag: 98261f0a-4b63-4575-bdba-a594c5e43efc
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Table = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

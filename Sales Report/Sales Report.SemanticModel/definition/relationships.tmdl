@@ -1,0 +1,29 @@
+relationship 27414c89-6968-4971-8ae3-38741eaa750a
+	fromColumn: Product.'Sub Category Key'
+	toColumn: SubCategory.SubCategoryKey
+
+relationship 0737cce0-5cba-4f06-a3ff-3e16e4c94feb
+	fromColumn: Sales.Geokey
+	toColumn: Geography.Geokey
+
+relationship 4da4f53b-399b-4916-b64d-79177add9d46
+	fromColumn: Sales.SalesRepID
+	toColumn: SalesRep.SalesRepID
+
+relationship 610fe3b7-b16c-42a6-a944-d91eae12d9df
+	fromColumn: SubCategory.CategoryKey
+	toColumn: Categories.CategoryKey
+
+relationship b6bc041b-eec3-4fa0-b955-11e9fffee548
+	fromColumn: Sales.ProductID
+	toColumn: Product.ProductID
+
+relationship c4934ce8-b63f-4711-bc2c-ae03ef17d93b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Date Master'.Date
+	toColumn: LocalDateTable_e1bc1698-dced-4752-bfa5-4da5d9a38472.Date
+
+relationship 947f18ca-fe88-44a5-b807-a1e309400444
+	fromColumn: Sales.Date
+	toColumn: 'Date Master'.Date
+

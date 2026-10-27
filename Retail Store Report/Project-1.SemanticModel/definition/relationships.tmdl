@@ -1,0 +1,5 @@
+relationship 7772f9bd-27a5-4622-9307-4a08c0a0324c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Student Survey'.'Survey Date '
+	toColumn: LocalDateTable_e4bd2cee-7d74-4b51-b7df-a127e7d6d988.Date
+

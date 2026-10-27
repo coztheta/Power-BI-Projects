@@ -1,0 +1,172 @@
+table 'Student Survey'
+	lineageTag: 15a28529-90be-4022-9d41-99ee866cb521
+
+	column 'Survey ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: a46df692-b32c-457d-8366-ec0be2a9d2ff
+		summarizeBy: count
+		sourceColumn: Survey ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: d4d5732e-5c18-4f9f-abae-229efce3d479
+		summarizeBy: sum
+		sourceColumn: Store Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Location'
+		dataType: string
+		lineageTag: 3445c8c3-78df-4235-b830-f6320d1455cd
+		summarizeBy: none
+		sourceColumn: Store Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Setting'
+		dataType: string
+		lineageTag: 0c8272db-c3a6-4fa8-9ced-449bf04df61f
+		summarizeBy: none
+		sourceColumn: Store Setting
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 2aad9d31-63ec-40d1-b8e2-e702e628b735
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Exchange
+		dataType: string
+		lineageTag: 371e545d-a65c-495e-8769-3248c8e42200
+		summarizeBy: none
+		sourceColumn: Exchange
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Survey Date '
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9a5089e8-fed4-4b67-b362-52bad1d7c110
+		summarizeBy: none
+		sourceColumn: "Survey Date "
+
+		variation Variation
+			isDefault
+			relationship: 7772f9bd-27a5-4622-9307-4a08c0a0324c
+			defaultHierarchy: LocalDateTable_e4bd2cee-7d74-4b51-b7df-a127e7d6d988.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column VideoGames
+		dataType: double
+		lineageTag: a5df378d-9103-48b8-96b1-b97bd2df9612
+		summarizeBy: sum
+		sourceColumn: VideoGames
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Academic Books'
+		dataType: double
+		lineageTag: 4e28f87f-25c6-420b-a98c-5fdae485803f
+		summarizeBy: sum
+		sourceColumn: Academic Books
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Toys
+		dataType: double
+		lineageTag: 1e30261e-4bcc-4596-9db8-ed174f103754
+		summarizeBy: sum
+		sourceColumn: Toys
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'OutDoor SportKits'
+		dataType: double
+		lineageTag: dc158d8b-e2a0-491e-bd23-0eebda6120c3
+		summarizeBy: sum
+		sourceColumn: OutDoor SportKits
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'InDoor SportKits'
+		dataType: double
+		lineageTag: 64cc826d-46fc-4ea2-a647-80406bdc6388
+		summarizeBy: sum
+		sourceColumn: InDoor SportKits
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Gadgets
+		dataType: double
+		lineageTag: 39148a40-47cf-4463-9dea-43d261e2be01
+		summarizeBy: sum
+		sourceColumn: Gadgets
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'NonAcademic Books'
+		dataType: double
+		lineageTag: 997220ba-638e-4885-b8be-e74d6ba7b14b
+		summarizeBy: sum
+		sourceColumn: NonAcademic Books
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Number of Items Purchased'
+		dataType: int64
+		formatString: 0
+		lineageTag: ae8c46b6-fd03-4f5a-a778-bda23164b3fc
+		summarizeBy: sum
+		sourceColumn: Number of Items Purchased
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Amount of Purchases'
+		dataType: double
+		lineageTag: 36eef921-5173-45ba-ad42-046c4ab47b16
+		summarizeBy: sum
+		sourceColumn: Total Amount of Purchases
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Student Survey-effe243a-89ea-4b8e-963c-2d0d2ecc348b' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\JAYDEEP\DATA SCIENCE\PowerBI\Project\Student Survey.xlsx"), null, true),
+				    #"Student Survey_Sheet" = Source{[Item="Student Survey",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Student Survey_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Survey ID", Int64.Type}, {"Store Number", Int64.Type}, {"Store Location", type text}, {"Store Setting", type text}, {"Age", Int64.Type}, {"Exchange", type text}, {"Survey Date ", type date}, {"VideoGames", type number}, {"Academic Books", type number}, {"Toys", type number}, {"OutDoor SportKits", type number}, {"InDoor SportKits", type number}, {"Gadgets", type number}, {"NonAcademic Books", type number}, {"Number of Items Purchased", Int64.Type}, {"Total Amount of Purchases", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

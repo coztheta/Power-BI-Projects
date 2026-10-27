@@ -1,0 +1,93 @@
+table blinkit_customer_feedback
+	lineageTag: 2644d833-27b8-4abe-b5a0-6e4b1880f57e
+
+	column feedback_id
+		dataType: int64
+		formatString: 0
+		lineageTag: e9dc76ac-1706-4504-b203-ff21383eb079
+		summarizeBy: sum
+		sourceColumn: feedback_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f75096b6-687d-42f2-97af-a55d1c932d67
+		summarizeBy: sum
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: bda638c8-7fac-4a77-a3dc-5f0af140e811
+		summarizeBy: sum
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column rating
+		dataType: int64
+		formatString: 0
+		lineageTag: e5619181-385a-4ab4-9d94-6c0583bcad81
+		summarizeBy: sum
+		sourceColumn: rating
+
+		annotation SummarizationSetBy = Automatic
+
+	column feedback_text
+		dataType: string
+		lineageTag: a6096d27-da84-454f-80d9-d81e3d52c843
+		summarizeBy: none
+		sourceColumn: feedback_text
+
+		annotation SummarizationSetBy = Automatic
+
+	column feedback_category
+		dataType: string
+		lineageTag: b0a2537d-8404-4e52-8c29-caf756073874
+		summarizeBy: none
+		sourceColumn: feedback_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column sentiment
+		dataType: string
+		lineageTag: e0252883-5dd2-46c5-9f14-a3341e76129c
+		summarizeBy: none
+		sourceColumn: sentiment
+
+		annotation SummarizationSetBy = Automatic
+
+	column feedback_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 250f2f4a-704e-42c0-836e-3b162b572889
+		summarizeBy: none
+		sourceColumn: feedback_date
+
+		variation Variation
+			isDefault
+			relationship: 7c6e13a1-11bb-4c01-8f33-b721ed9efaab
+			defaultHierarchy: LocalDateTable_1d7e53e3-7eed-42cf-8e84-8dd5e60e77b5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition blinkit_customer_feedback = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Data Analyst\Blinkit Report\Dataset\blinkit_customer_feedback.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"feedback_id", Int64.Type}, {"order_id", Int64.Type}, {"customer_id", Int64.Type}, {"rating", Int64.Type}, {"feedback_text", type text}, {"feedback_category", type text}, {"sentiment", type text}, {"feedback_date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

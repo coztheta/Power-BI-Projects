@@ -1,0 +1,60 @@
+table blinkit_inventoryNew
+	lineageTag: 6636979d-5fe1-490e-9cf6-fa0497231e67
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 3c58a727-04ac-4c52-b07c-815ce43e2dad
+		summarizeBy: sum
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ea51b004-8a18-475c-a953-f4bf2d5c964c
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: 5c89cc96-5374-4920-8c01-f6ba3dc8963e
+			defaultHierarchy: LocalDateTable_7db96aaf-31e6-4d8f-940c-b4f2019d5aae.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column stock_received
+		dataType: int64
+		formatString: 0
+		lineageTag: 824b4dc3-8f1f-49ef-b063-0926b4fc50bd
+		summarizeBy: sum
+		sourceColumn: stock_received
+
+		annotation SummarizationSetBy = Automatic
+
+	column damaged_stock
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e7423cf-7595-4ffb-8e08-6cdec668b3aa
+		summarizeBy: sum
+		sourceColumn: damaged_stock
+
+		annotation SummarizationSetBy = Automatic
+
+	partition blinkit_inventoryNew = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Data Analyst\Blinkit Report\Dataset\blinkit_inventoryNew.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"product_id", Int64.Type}, {"date", type date}, {"stock_received", Int64.Type}, {"damaged_stock", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

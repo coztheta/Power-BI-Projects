@@ -1,0 +1,43 @@
+table 'Date Master'
+	lineageTag: b9c3a732-6a60-4c85-a3a5-ca38c4563335
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: Long Date
+		lineageTag: f3813674-58e7-461c-8cec-dbf05e51232d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year = YEAR('Date Master'[Date])
+		formatString: 0
+		lineageTag: 4d9af5b9-18fe-46c5-8981-787e7bed02a6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month order' = MONTH('Date Master'[Date])
+		formatString: 0
+		lineageTag: 37d247b2-e19d-4438-9426-58c4b00e496c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month = FORMAT('Date Master'[Date],"MMMM")
+		lineageTag: b1919927-a38d-4d8f-ab2e-f376144bd202
+		summarizeBy: none
+		sortByColumn: 'Month order'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Date Master-89b4e75e-5b19-4007-bd29-b8771a984e3a' = calculated
+		mode: import
+		source = CALENDARAUTO()
+
+	annotation PBI_Id = 1363567640834a0a8a24d7de056e2e87
+

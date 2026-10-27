@@ -1,0 +1,165 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 467,
+            "y": 233
+          },
+          "nodeIndex": "dim_date",
+          "nodeLineageTag": "de6ae8ba-95d9-48ad-a3e0-ef7dc4842daa",
+          "size": {
+            "height": 303,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 881,
+            "y": 0
+          },
+          "nodeIndex": "electric_vehicle_sales_by_makers",
+          "nodeLineageTag": "4db67ede-d488-43c1-b52a-a436bbdb97cb",
+          "size": {
+            "height": 176,
+            "width": 301
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 736,
+            "y": 511
+          },
+          "nodeIndex": "electric_vehicle_sales_by_state",
+          "nodeLineageTag": "a61921bf-75d9-4b6b-8879-b2c2b8964c71",
+          "size": {
+            "height": 200,
+            "width": 331
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 1245,
+            "y": 52
+          },
+          "nodeIndex": "Keymatrix",
+          "nodeLineageTag": "470ab47e-4588-4491-a031-a7d7d2b67ae5",
+          "size": {
+            "height": 274,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 1420,
+            "y": 257
+          },
+          "nodeIndex": "Dynamic_Date",
+          "nodeLineageTag": "17e5edab-ef7c-4b5b-9de8-c32b52ff40c5",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 583
+          },
+          "nodeIndex": "Q_Y Order Table",
+          "nodeLineageTag": "cbbe5f57-8c1c-440a-89d4-b8463b4fbf61",
+          "size": {
+            "height": 145,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 227
+          },
+          "nodeIndex": "Y-Order Rank",
+          "nodeLineageTag": "acd09a92-079a-40ff-b90c-55b309bfda3b",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 229,
+            "y": 0
+          },
+          "nodeIndex": "M_Y Order Table",
+          "nodeLineageTag": "4af5b397-2050-4dc9-8608-45b1663da531",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1074,
+            "y": 318
+          },
+          "nodeIndex": "Vehicle_Category_Table",
+          "nodeLineageTag": "24a91f91-05ed-4ce8-8d96-378c005a2ba6",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1704,
+            "y": 312
+          },
+          "nodeIndex": "Panetration Table",
+          "nodeLineageTag": "8d9ba3d2-5b05-4100-8bb7-a0f7d19cff40",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1988,
+            "y": 312
+          },
+          "nodeIndex": "Basic Calculation",
+          "nodeLineageTag": "bba51bfe-b69b-4885-ae3e-af52fd2067c5",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 3
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

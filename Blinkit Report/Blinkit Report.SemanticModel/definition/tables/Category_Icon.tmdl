@@ -1,0 +1,35 @@
+table Category_Icon
+	lineageTag: 76a23c2b-7dca-4c17-a077-8049ee85a259
+
+	column category
+		dataType: string
+		lineageTag: c5e45329-6c9a-44d0-9b01-bfc3bf21728f
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Img
+		dataType: string
+		lineageTag: fbb6e129-52e2-4f0e-ab58-13daa53f12d4
+		summarizeBy: none
+		sourceColumn: Img
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Category_Icon = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Data Analyst\Blinkit Report\Dataset\Category_Icons.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Sheet1_Sheet,{{"Column1", type text}, {"Column2", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"category", type text}, {"Img", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

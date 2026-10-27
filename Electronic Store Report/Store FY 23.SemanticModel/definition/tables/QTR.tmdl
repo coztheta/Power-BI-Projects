@@ -1,0 +1,22 @@
+table QTR
+	lineageTag: 30cad9f9-fb5e-4226-aeef-a80dac2ac80c
+
+	column QTR
+		dataType: string
+		lineageTag: 9e26331a-181b-4688-8283-946feb3d1832
+		summarizeBy: none
+		sourceColumn: QTR
+
+		annotation SummarizationSetBy = Automatic
+
+	partition QTR-fdb74c43-c6f1-4365-b987-53e88dd592bd = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCjTUNTJWitUBsozgLGM4ywTMigUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [QTR = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"QTR", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

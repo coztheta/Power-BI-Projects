@@ -1,0 +1,97 @@
+table 'Footfall & Lead'
+	lineageTag: 9439f4cd-121f-4b07-80da-6f1bf17660f5
+
+	column QTR
+		dataType: string
+		lineageTag: 1dce1dac-4210-48a7-a7d4-1773d7fadd57
+		summarizeBy: none
+		sourceColumn: QTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week
+		dataType: string
+		lineageTag: 7b49ab95-11fc-4e3b-9959-2b76c26dcd68
+		summarizeBy: none
+		sourceColumn: Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column Branch
+		dataType: string
+		lineageTag: 788a5d1a-f298-4f96-96b5-b9c2d52128c1
+		summarizeBy: none
+		sourceColumn: Branch
+
+		annotation SummarizationSetBy = Automatic
+
+	column site
+		dataType: string
+		lineageTag: 7d8ca123-ce80-464d-9346-d8009d576834
+		summarizeBy: none
+		sourceColumn: site
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shoopertrack FootFall'
+		dataType: int64
+		formatString: 0
+		lineageTag: c831cc32-7af5-463d-a288-85ed9963304d
+		summarizeBy: sum
+		sourceColumn: Shoopertrack FootFall
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Neutralized FootFall'
+		dataType: int64
+		lineageTag: fd16c0b3-b17f-41c3-93cb-488fdfb7eaef
+		summarizeBy: sum
+		sourceColumn: Neutralized FootFall
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Conversion Ratio' =
+			
+			DIVIDE(
+				DISTINCTCOUNT(MAIN_DATA[Customer Code]),
+				SUM('Footfall & Lead'[Neutralized FootFall])
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: edcf7ad9-df58-4e55-973c-7b1d97afab90
+		summarizeBy: sum
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column7
+		dataType: string
+		lineageTag: 9ea7b708-a95f-4f18-b1c6-826d8e62e545
+		summarizeBy: none
+		sourceColumn: Column7
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dates
+		dataType: string
+		lineageTag: facaec2c-805a-4feb-856d-69400cf53508
+		summarizeBy: none
+		sourceColumn: Dates
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Footfall & Lead-2e2f6caa-f3b8-495c-99d4-da9e2d6948c2' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\JAYDEEP\DATA\Footfall-FY 2023.xlsx"), null, true),
+				    #"Footfall & Lead_Sheet" = Source{[Item="Footfall & Lead",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Footfall & Lead_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"QTR", type text}, {"Branch", type text}, {"site", type text}, {"Shoopertrack FootFall", Int64.Type}, {"Neutralized FootFall", Int64.Type}, {"Week", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

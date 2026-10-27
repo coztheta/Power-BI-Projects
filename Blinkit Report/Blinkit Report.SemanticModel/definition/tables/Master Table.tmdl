@@ -1,0 +1,326 @@
+table 'Master Table'
+	lineageTag: 6698c8d1-1bf1-484f-b6e8-496b72624aaa
+
+	column order_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 41ffd905-384d-469b-b881-960764426a2d
+		summarizeBy: sum
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 47372084-81e0-4768-82be-a9463b63a3c0
+		summarizeBy: sum
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d1b981cd-0675-47fd-b3d6-b579a7871c99
+		summarizeBy: none
+		sourceColumn: order_date
+
+		variation Variation
+			isDefault
+			relationship: e6caccbd-dc64-42de-8e03-027c85eef8df
+			defaultHierarchy: LocalDateTable_c6e824ce-d575-40eb-9fc9-0d2048935eaf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column promised_delivery_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6e9edc1e-49d2-4329-a191-7faf799ebe31
+		summarizeBy: none
+		sourceColumn: promised_delivery_time
+
+		variation Variation
+			isDefault
+			relationship: c307644b-a942-4221-a88f-36f199477672
+			defaultHierarchy: LocalDateTable_66c81657-689c-482f-910b-43ed411c999b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_delivery_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 053f1842-6d53-4e00-971b-dd7d4553e325
+		summarizeBy: none
+		sourceColumn: actual_delivery_time
+
+		variation Variation
+			isDefault
+			relationship: 97ad56f3-184a-4b80-92f0-51efc4644e31
+			defaultHierarchy: LocalDateTable_6a39cdd9-812d-49ec-9580-21b93c0a297d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_status
+		dataType: string
+		lineageTag: 7daa8b33-751b-4089-b2e7-dd141fd7bdbf
+		summarizeBy: none
+		sourceColumn: delivery_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_total
+		dataType: double
+		lineageTag: a505b3a2-58c8-41b2-88b8-eee171354446
+		summarizeBy: sum
+		sourceColumn: order_total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column payment_method
+		dataType: string
+		lineageTag: ae8b83e3-f70f-4c92-b111-434732b96339
+		summarizeBy: none
+		sourceColumn: payment_method
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_partner_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0fbcc27c-5652-4a5b-b0ca-b577cddcbf74
+		summarizeBy: sum
+		sourceColumn: delivery_partner_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 1233be5d-7cdc-4fe2-8f4d-a93eccb1dbe8
+		summarizeBy: sum
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Name'
+		dataType: string
+		lineageTag: a50436aa-fc48-4997-8064-177faddfbbd2
+		summarizeBy: none
+		sourceColumn: Customer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_segment
+		dataType: string
+		lineageTag: 1ed4071b-d6d3-489b-90f2-977c0a5d0f45
+		summarizeBy: none
+		sourceColumn: customer_segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f74d65ee-38eb-47fa-bb4a-6550975b58bc
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: d20e0e42-ad48-45b1-b90b-b0dfc1bd7693
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product category'
+		dataType: string
+		lineageTag: 11bc86ba-5193-485e-bc17-932befcd8dba
+		summarizeBy: none
+		sourceColumn: Product category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'products price'
+		dataType: double
+		lineageTag: fe9b17da-4f78-4d27-9276-0b823b1ef959
+		summarizeBy: sum
+		sourceColumn: products price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'feedback rating'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8dbb87cb-2b73-499e-8ade-b4a342ee6cec
+		summarizeBy: sum
+		sourceColumn: feedback rating
+
+		annotation SummarizationSetBy = Automatic
+
+	column feedback_text
+		dataType: string
+		lineageTag: 58f91261-039c-4512-9dd1-fb8bcd594fce
+		summarizeBy: none
+		sourceColumn: feedback_text
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'feedback category'
+		dataType: string
+		lineageTag: e34e843c-5231-4a97-aa27-a27a0bf85cac
+		summarizeBy: none
+		sourceColumn: feedback category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'feedback sentiment'
+		dataType: string
+		lineageTag: 351813af-1bea-4f27-8336-7875e176e6dc
+		summarizeBy: none
+		sourceColumn: feedback sentiment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value_Type
+		dataType: string
+		lineageTag: 7b59df21-df9f-46bd-89fe-693928173738
+		summarizeBy: none
+		sourceColumn: Value_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: double
+		lineageTag: ce142aa1-bfc8-4710-95a5-255ee810ffec
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: aad064a7-c7a4-4ac8-8d84-9ba2db8dff47
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column delivery_time_minutes
+		dataType: int64
+		formatString: 0
+		lineageTag: 33a11c8a-b691-4a27-b021-e5dc35cda3a1
+		summarizeBy: sum
+		sourceColumn: delivery_time_minutes
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'delivery distance_km'
+		dataType: double
+		lineageTag: 056cdf67-ae0d-475e-ae9d-8dbb36192f7b
+		summarizeBy: sum
+		sourceColumn: delivery distance_km
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column reasons_if_delayed
+		dataType: string
+		lineageTag: 14839775-1bfd-4747-bf75-71a919e770b5
+		summarizeBy: none
+		sourceColumn: reasons_if_delayed
+
+		annotation SummarizationSetBy = Automatic
+
+	column Emoji
+		dataType: string
+		lineageTag: 47c8b934-a105-4aec-9242-2061e9e864c8
+		summarizeBy: none
+		sourceColumn: Emoji
+
+		annotation SummarizationSetBy = Automatic
+
+	column Star
+		dataType: string
+		lineageTag: 0233759f-1026-47c5-a26c-00b4801a9e39
+		summarizeBy: none
+		sourceColumn: Star
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category Img'
+		dataType: string
+		lineageTag: 3542982a-0fb2-4b49-81bf-7cdd142dd921
+		summarizeBy: none
+		sourceColumn: Category Img
+
+		annotation SummarizationSetBy = Automatic
+
+	column area
+		dataType: string
+		lineageTag: 0ca9535a-1492-4bc0-9c0c-b2b597da0bc1
+		summarizeBy: none
+		sourceColumn: area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rating No' = "Star" & 'Master Table'[feedback rating]
+		lineageTag: 24dd5103-2adf-48f0-8f30-3d5905874489
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Master Table' = m
+		mode: import
+		source =
+				let
+				    Source = blinkit_orders,
+				    #"Merged Queries" = Table.NestedJoin(Source, {"customer_id"}, blinkit_customers, {"customer_id"}, "blinkit_customers", JoinKind.LeftOuter),
+				    #"Expanded blinkit_customers" = Table.ExpandTableColumn(#"Merged Queries", "blinkit_customers", {"area", "customer_name", "customer_segment"}, {"blinkit_customers.area", "blinkit_customers.customer_name", "blinkit_customers.customer_segment"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded blinkit_customers",{{"blinkit_customers.area", "area"},{"blinkit_customers.customer_name", "Customer Name"}, {"blinkit_customers.customer_segment", "customer_segment"}}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Renamed Columns", {"order_id"}, blinkit_order_items, {"order_id"}, "blinkit_order_items", JoinKind.LeftOuter),
+				    #"Expanded blinkit_order_items" = Table.ExpandTableColumn(#"Merged Queries1", "blinkit_order_items", {"product_id", "quantity"}, {"blinkit_order_items.product_id", "blinkit_order_items.quantity"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Expanded blinkit_order_items",{{"blinkit_order_items.product_id", "product_id"}, {"blinkit_order_items.quantity", "Order quantity"}}),
+				    #"Merged Queries2" = Table.NestedJoin(#"Renamed Columns1", {"product_id"}, blinkit_products, {"product_id"}, "blinkit_products", JoinKind.LeftOuter),
+				    #"Expanded blinkit_products" = Table.ExpandTableColumn(#"Merged Queries2", "blinkit_products", {"product_name", "category", "price"}, {"blinkit_products.product_name", "blinkit_products.category", "blinkit_products.price"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Expanded blinkit_products",{{"blinkit_products.product_name", "product_name"}, {"blinkit_products.category", "Product category"}, {"blinkit_products.price", "products price"}}),
+				    #"Merged Queries3" = Table.NestedJoin(#"Renamed Columns2", {"order_id", "customer_id"}, blinkit_customer_feedback, {"order_id", "customer_id"}, "blinkit_customer_feedback", JoinKind.LeftOuter),
+				    #"Expanded blinkit_customer_feedback" = Table.ExpandTableColumn(#"Merged Queries3", "blinkit_customer_feedback", {"rating", "feedback_text", "feedback_category", "sentiment"}, {"blinkit_customer_feedback.rating", "blinkit_customer_feedback.feedback_text", "blinkit_customer_feedback.feedback_category", "blinkit_customer_feedback.sentiment"}),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Expanded blinkit_customer_feedback",{{"blinkit_customer_feedback.rating", "feedback rating"}, {"blinkit_customer_feedback.feedback_text", "feedback_text"}, {"blinkit_customer_feedback.feedback_category", "feedback category"}, {"blinkit_customer_feedback.sentiment", "feedback sentiment"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns3", "Value", each [Order quantity]*[products price]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"Value", type number}}),
+				    #"Unpivoted Only Selected Columns" = Table.Unpivot(#"Changed Type", {"Value", "Order quantity"}, "Attribute", "Value.1"),
+				    #"Renamed Columns4" = Table.RenameColumns(#"Unpivoted Only Selected Columns",{{"Value.1", "Value"}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Renamed Columns4", "order_date", "order_date - Copy"),
+				    #"Renamed Columns5" = Table.RenameColumns(#"Duplicated Column",{{"order_date - Copy", "Date"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns5",{{"Date", type date}}),
+				    #"Merged Queries4" = Table.NestedJoin(#"Changed Type1", {"order_id", "delivery_partner_id"}, blinkit_delivery_performance, {"order_id", "delivery_partner_id"}, "blinkit_delivery_performance", JoinKind.LeftOuter),
+				    #"Expanded blinkit_delivery_performance" = Table.ExpandTableColumn(#"Merged Queries4", "blinkit_delivery_performance", {"delivery_time_minutes", "distance_km", "reasons_if_delayed"}, {"blinkit_delivery_performance.delivery_time_minutes", "blinkit_delivery_performance.distance_km", "blinkit_delivery_performance.reasons_if_delayed"}),
+				    #"Renamed Columns6" = Table.RenameColumns(#"Expanded blinkit_delivery_performance",{{"blinkit_delivery_performance.delivery_time_minutes", "delivery_time_minutes"}, {"blinkit_delivery_performance.distance_km", "delivery distance_km"}, {"blinkit_delivery_performance.reasons_if_delayed", "reasons_if_delayed"}}),
+				    #"Merged Queries5" = Table.NestedJoin(#"Renamed Columns6", {"feedback rating"}, Rating_Icon, {"Rating"}, "Rating_Icon", JoinKind.LeftOuter),
+				    #"Expanded Rating_Icon" = Table.ExpandTableColumn(#"Merged Queries5", "Rating_Icon", {"Emoji", "Star"}, {"Rating_Icon.Emoji", "Rating_Icon.Star"}),
+				    #"Renamed Columns7" = Table.RenameColumns(#"Expanded Rating_Icon",{{"Rating_Icon.Emoji", "Emoji"}, {"Rating_Icon.Star", "Star"}}),
+				    #"Merged Queries6" = Table.NestedJoin(#"Renamed Columns7", {"Product category"}, Category_Icon, {"category"}, "Category_Icon", JoinKind.LeftOuter),
+				    #"Expanded Category_Icon" = Table.ExpandTableColumn(#"Merged Queries6", "Category_Icon", {"Img"}, {"Category_Icon.Img"}),
+				    #"Renamed Columns8" = Table.RenameColumns(#"Expanded Category_Icon",{{"Category_Icon.Img", "Category Img"}, {"Attribute", "Value_Type"}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns8","Order quantity","Quantity",Replacer.ReplaceText,{"Value_Type"})
+				in
+				    #"Replaced Value"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

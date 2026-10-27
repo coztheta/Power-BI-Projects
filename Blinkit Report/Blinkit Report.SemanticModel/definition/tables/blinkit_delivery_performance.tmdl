@@ -1,0 +1,98 @@
+table blinkit_delivery_performance
+	lineageTag: 930086b7-48eb-427b-973c-9bdd9a026256
+
+	column order_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a2911ca7-37fa-471d-87ed-bd968b5fac34
+		summarizeBy: sum
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_partner_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f66fbf20-4803-4cba-94bf-92ba971de8d0
+		summarizeBy: sum
+		sourceColumn: delivery_partner_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column promised_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 81528a24-a3b5-4f35-96f4-e0b8ed7cb4ad
+		summarizeBy: none
+		sourceColumn: promised_time
+
+		variation Variation
+			isDefault
+			relationship: 447bed61-30c2-4321-9087-6cebb58211b2
+			defaultHierarchy: LocalDateTable_d9627868-2ba1-4ad5-abaf-510724a1c01f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e2bad444-c8b2-4aa2-a2fd-8de93a942832
+		summarizeBy: none
+		sourceColumn: actual_time
+
+		variation Variation
+			isDefault
+			relationship: 16d3eabb-8996-4fea-8e3e-ebb6455618eb
+			defaultHierarchy: LocalDateTable_9b201db7-8fc8-442b-ba78-e46f144e0b80.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_time_minutes
+		dataType: int64
+		formatString: 0
+		lineageTag: c0de97eb-0b68-4451-a87c-0c55a2d28c75
+		summarizeBy: sum
+		sourceColumn: delivery_time_minutes
+
+		annotation SummarizationSetBy = Automatic
+
+	column distance_km
+		dataType: double
+		lineageTag: 090de31a-1438-46ca-98b2-6f6214648fde
+		summarizeBy: sum
+		sourceColumn: distance_km
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column delivery_status
+		dataType: string
+		lineageTag: f30ad848-d4de-416d-98f1-df6da2348c1c
+		summarizeBy: none
+		sourceColumn: delivery_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column reasons_if_delayed
+		dataType: string
+		lineageTag: 2daea951-2b56-486c-8b2f-a1d65a9a05e5
+		summarizeBy: none
+		sourceColumn: reasons_if_delayed
+
+		annotation SummarizationSetBy = Automatic
+
+	partition blinkit_delivery_performance = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Data Analyst\Blinkit Report\Dataset\blinkit_delivery_performance.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"order_id", Int64.Type}, {"delivery_partner_id", Int64.Type}, {"promised_time", type datetime}, {"actual_time", type datetime}, {"delivery_time_minutes", Int64.Type}, {"distance_km", type number}, {"delivery_status", type text}, {"reasons_if_delayed", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

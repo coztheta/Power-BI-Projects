@@ -1,0 +1,39 @@
+table Table1
+	lineageTag: ae7b66c5-bd31-4045-979d-65865e11d468
+
+	column Region
+		dataType: string
+		lineageTag: 681d4739-9b66-437c-914d-5db2d4753f8f
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Branch
+		dataType: string
+		lineageTag: 31df9e8e-d7b3-4566-bccc-957f97a1e478
+		summarizeBy: none
+		sourceColumn: Branch
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cluster
+		dataType: string
+		lineageTag: 61b806fb-3a73-4ed7-af4e-120a749c55c2
+		summarizeBy: none
+		sourceColumn: Cluster
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Table1-0ab9b1b6-ab0c-495d-bcdd-f1f7ff1e2545 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\JAYDEEP\DATA\branch-data.xlsx"), null, true),
+				    Table1_Table = Source{[Item="Table1",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Table1_Table,{{"Region", type text}, {"Branch", type text}, {"Cluster", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

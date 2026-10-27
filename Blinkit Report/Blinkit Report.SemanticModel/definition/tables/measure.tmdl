@@ -1,0 +1,44 @@
+table measure
+	lineageTag: cd071f41-e107-4cdc-8fcf-a4de4dc6c1bd
+
+	measure 'Order Count' = COUNT(blinkit_orders[order_id])
+		formatString: 0
+		lineageTag: 6c20daec-9770-4c08-a0f9-df22a8b9a4e8
+
+	measure 'Order Amt' = SUM(blinkit_order_items[Order Price])
+		lineageTag: 178e61fa-3fd0-4f11-97dc-cc440a66782e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Customer' = DISTINCTCOUNT(blinkit_customers[customer_id])
+		formatString: 0
+		lineageTag: 447a2aa8-a4e3-4dbe-8fe6-b83ae9841ae6
+
+	measure 'Current year Sales' = CALCULATE(SUM('Master Table'[products price]),YEAR('Date'[Year] = 2024))
+		lineageTag: 9425c7cb-6c7c-41a9-8acb-f0feae5a32b3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Pervious Year Sales' = CALCULATE(SUM('Master Table'[products price]), SAMEPERIODLASTYEAR('Date'[Year]))
+		formatString: 0
+		lineageTag: fe3b153c-e2a7-487e-ac40-b484336c2dd3
+
+	column Column1
+		dataType: string
+		lineageTag: f5d51c93-aecb-4428-add0-b7f95e4661fb
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition measure = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

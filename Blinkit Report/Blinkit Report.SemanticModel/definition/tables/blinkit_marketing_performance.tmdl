@@ -1,0 +1,123 @@
+table blinkit_marketing_performance
+	lineageTag: 82552791-dbdc-4cad-b27d-0a33368184e0
+
+	column campaign_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 251ffc2e-4d69-4bcd-abf7-e4cb0e2b0724
+		summarizeBy: sum
+		sourceColumn: campaign_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column campaign_name
+		dataType: string
+		lineageTag: 2f469f15-19ab-4c06-92db-03c72cd57cea
+		summarizeBy: none
+		sourceColumn: campaign_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 99233132-4654-46f4-ba36-4e52a50d80a4
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: dad67af6-315c-4ce8-86c9-2a927f50884e
+			defaultHierarchy: LocalDateTable_bc83dcb1-7bef-4ae5-966d-552815ec1651.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column target_audience
+		dataType: string
+		lineageTag: 3db476cb-1630-4dc8-b174-1c8aceff4b47
+		summarizeBy: none
+		sourceColumn: target_audience
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel
+		dataType: string
+		lineageTag: 62902b42-bac3-4029-9543-2bcdf595ba65
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column impressions
+		dataType: int64
+		formatString: 0
+		lineageTag: dd8cc512-c1cc-4ad2-8ca4-ff6eadd714da
+		summarizeBy: sum
+		sourceColumn: impressions
+
+		annotation SummarizationSetBy = Automatic
+
+	column clicks
+		dataType: int64
+		formatString: 0
+		lineageTag: 065c4b79-f0a5-4003-a0f7-c58997c4a6d2
+		summarizeBy: sum
+		sourceColumn: clicks
+
+		annotation SummarizationSetBy = Automatic
+
+	column conversions
+		dataType: int64
+		formatString: 0
+		lineageTag: ed8b3700-dcd3-41e2-8e33-19582ccb87aa
+		summarizeBy: sum
+		sourceColumn: conversions
+
+		annotation SummarizationSetBy = Automatic
+
+	column spend
+		dataType: double
+		lineageTag: 6c51fa8f-8dbe-4a74-85b8-30373f4861c7
+		summarizeBy: sum
+		sourceColumn: spend
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column revenue_generated
+		dataType: double
+		lineageTag: ca5a656f-b5fa-4e12-831b-0317b098d408
+		summarizeBy: sum
+		sourceColumn: revenue_generated
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column roas
+		dataType: double
+		lineageTag: c381822c-1c34-401c-8ab4-5d0006326a18
+		summarizeBy: sum
+		sourceColumn: roas
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition blinkit_marketing_performance = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Data Analyst\Blinkit Report\Dataset\blinkit_marketing_performance.csv"),[Delimiter=",", Columns=11, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"campaign_id", Int64.Type}, {"campaign_name", type text}, {"date", type date}, {"target_audience", type text}, {"channel", type text}, {"impressions", Int64.Type}, {"clicks", Int64.Type}, {"conversions", Int64.Type}, {"spend", type number}, {"revenue_generated", type number}, {"roas", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

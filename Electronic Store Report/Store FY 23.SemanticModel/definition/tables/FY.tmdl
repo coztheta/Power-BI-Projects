@@ -1,0 +1,22 @@
+table FY
+	lineageTag: 1dc46430-3336-44c6-b13c-df7aabe72e2f
+
+	column 'Finasial Year'
+		dataType: string
+		lineageTag: 70677e4e-4041-4fcf-9090-09fdbf5dde03
+		summarizeBy: none
+		sourceColumn: Finasial Year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FY-6e15b72d-644a-4181-ab1c-01f6194fe72d = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WcovUNTIwMlaK1YGxjZRiYwE=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Finasial Year" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Finasial Year", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "f448de8064a6b0dd4cd8",
+  "position": {
+    "x": 640,
+    "y": 166.36363636363635,
+    "z": 7000,
+    "height": 31.818181818181817,
+    "width": 290.90909090909088,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Top 5 EV 4-wheelers Makers",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "13.3333px",
+                      "color": "#04c408"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

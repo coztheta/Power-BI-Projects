@@ -1,0 +1,349 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "2cad35781f40ad9dec13",
+  "position": {
+    "x": 460.90909090909088,
+    "y": 532.72727272727263,
+    "z": 14000,
+    "height": 117.27272727272727,
+    "width": 559.090909090909,
+    "tabOrder": 14000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "For Cars:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#9071ce"
+                    }
+                  },
+                  {
+                    "value": " The annual running cost of an electric vehicle (EV) is ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  },
+                  {
+                    "value": "₹29,200",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#02a376"
+                    }
+                  },
+                  {
+                    "value": ", significantly lower than",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "₹120,906.25",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#e66c37"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "for petrol vehicles and ₹112,953.13 for diesel vehicles. This translates to a cost per kilometer of ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  },
+                  {
+                    "value": "₹1.60",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#02a376"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "for EVs compared to",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "₹6.63",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#e66c37"
+                    }
+                  },
+                  {
+                    "value": " for petrol and",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "₹6.18",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#e66c37"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "for diesel.",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "For Two-Wheelers:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#9071ce"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "The annual running cost of an EV is",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "₹19,211.00",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#02a376"
+                    }
+                  },
+                  {
+                    "value": ", compared to",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  },
+                  {
+                    "value": " ₹31,937.50",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#e66c37"
+                    }
+                  },
+                  {
+                    "value": " for petrol two-wheelers. This results in a cost per kilometer of ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  },
+                  {
+                    "value": "₹1.05",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#02a376"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "for EVs versus ",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  },
+                  {
+                    "value": "₹1.75",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#e66c37"
+                    }
+                  },
+                  {
+                    "value": " for petrol.",
+                    "textStyle": {
+                      "fontStyle": "italic",
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0FA486'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

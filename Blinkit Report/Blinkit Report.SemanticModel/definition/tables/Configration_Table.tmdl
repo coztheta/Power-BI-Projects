@@ -1,0 +1,38 @@
+table Configration_Table
+	lineageTag: 9ab1e751-c232-4632-b6e2-9fedf13dc341
+
+	measure Curr_Year = ```
+			
+			VAR yr = 2024
+			var system_yr = YEAR(TODAY()) 
+			VAR systeam_option = [Selected_Option]
+			
+			RETURN
+			IF(systeam_option = "Enable", system_yr , yr)
+			```
+		formatString: 0
+		lineageTag: f88c7d9f-016a-4376-be19-63daabe952c2
+
+	measure Previ_Year = [Curr_Year] - 1
+		formatString: 0
+		lineageTag: 7962a740-cc36-4138-991b-d559df66995f
+
+	measure yr = YEAR(TODAY())
+		formatString: 0
+		lineageTag: b847f36b-dead-4aaa-bf08-fa7a2cbd99d9
+
+	measure Selected_Option = SELECTEDVALUE(Auto_Date[Option])
+		lineageTag: dc9eadb4-3055-48a6-8ca2-9c32bb2d874d
+
+	partition Configration_Table = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

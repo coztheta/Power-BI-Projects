@@ -1,0 +1,155 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d7e1a5b87f3dea1f6a3a",
+  "position": {
+    "x": 51.4285714285714,
+    "y": 129.22077922077921,
+    "z": 1000,
+    "height": 158.57142857142858,
+    "width": 1074.2857142857144,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1.  Cost Savings:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#02a376"
+                    }
+                  },
+                  {
+                    "value": " EVs offer lower running costs due to reduced fuel and maintenance expenses. The cost of electricity is generally lower than petrol or diesel, and EVs have fewer moving parts, reducing maintenance needs.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2.  Environmental Concerns:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#02a376"
+                    }
+                  },
+                  {
+                    "value": " Increasing awareness of climate change and air pollution drives customers to choose EVs, as they produce zero tailpipe emissions and contribute to reducing urban air pollution.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3.  Government Incentives: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#02a376"
+                    }
+                  },
+                  {
+                    "value": "Government schemes, such as the Faster Adoption and Manufacturing of Hybrid and Electric Vehicles (FAME) II scheme, provide subsidies and incentives for EV purchases, making them more affordable and attractive.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#d9b300"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0FA486'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

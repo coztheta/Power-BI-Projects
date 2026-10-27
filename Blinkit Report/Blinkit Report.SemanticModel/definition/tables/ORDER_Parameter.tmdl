@@ -1,0 +1,26 @@
+table ORDER_Parameter
+	lineageTag: f1b548d2-e408-4f8c-bf17-5af359cecfb6
+
+	measure 'ORDER_Parameter Value' = SELECTEDVALUE('ORDER_Parameter'[ORDER_Parameter])
+		formatString: 0
+		lineageTag: d4bb254f-93d7-4b4d-bf5c-102019ba89e3
+
+	column ORDER_Parameter
+		formatString: 0
+		lineageTag: 88f01d64-6961-484c-bad3-b0182af30044
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition ORDER_Parameter = calculated
+		mode: import
+		source = GENERATESERIES(0, 5, 1)
+
+	annotation PBI_Id = 12706e483f6f4d1dbf400d6a2325e48d
+

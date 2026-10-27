@@ -1,0 +1,49 @@
+table Dynamic_Date
+	lineageTag: 17e5edab-ef7c-4b5b-9de8-c32b52ff40c5
+
+	column Dynamic_Date
+		lineageTag: 5acd5334-c58b-49f6-a9c5-6ef65dd4feae
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Dynamic_Date Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Dynamic_Date Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dynamic_Date Fields'
+		isHidden
+		lineageTag: a7fb8b85-2d2b-4529-81e6-481892f93f94
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Dynamic_Date Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dynamic_Date Order'
+		isHidden
+		formatString: 0
+		lineageTag: 46030d65-b0b0-4102-874a-272d7361828f
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dynamic_Date = calculated
+		mode: import
+		source =
+				{
+				    ("Y", NAMEOF('dim_date'[Year]), 0),
+				    ("Q", NAMEOF('dim_date'[Quater-Year]), 1),
+				    ("M", NAMEOF('dim_date'[Month-Year]), 2)
+				}
+
+	annotation PBI_Id = 1ea0c645aa374111a69de7a067f546d3
+

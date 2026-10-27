@@ -1,0 +1,40 @@
+relationship 4566608e-fd4f-483b-965d-8fec6701f4c9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_date.date
+	toColumn: LocalDateTable_a20bb2fc-e27c-41cd-9371-386eb7a62eaf.Date
+
+relationship 2834dc0a-ae82-87a6-28db-a593d345cdab
+	fromColumn: electric_vehicle_sales_by_makers.date
+	toColumn: dim_date.date
+
+relationship ce744bbb-d78c-28ff-5e8d-d978dd89a231
+	fromColumn: dim_date.Quater-Year
+	toColumn: 'Q_Y Order Table'.Q-Y
+
+relationship a516ad62-c775-7af3-2d13-fd62e825997c
+	fromColumn: dim_date.Year
+	toColumn: 'Y-Order Rank'.Year
+
+relationship d6ffb077-2d3d-6636-9720-73f482a9f83f
+	fromColumn: dim_date.Month-Year
+	toColumn: 'M_Y Order Table'.Month-Year
+
+relationship AutoDetected_1d87f836-0095-47e3-80a4-04a267df4b68
+	fromColumn: electric_vehicle_sales_by_makers.vehicle_category
+	toColumn: Vehicle_Category_Table.'Vehicle Category'
+
+relationship AutoDetected_b461b022-9bc1-4992-ae0f-fd24b7a83ebe
+	fromColumn: electric_vehicle_sales_by_state.vehicle_category
+	toColumn: Vehicle_Category_Table.'Vehicle Category'
+
+relationship 93ae4882-258e-41a4-91df-0bc557e9f100
+	joinOnDateBehavior: datePartOnly
+	fromColumn: electric_vehicle_sales_by_state.date
+	toColumn: LocalDateTable_1940e282-f146-47c0-96d8-16ec90559a25.Date
+
+relationship def43d77-24a5-2477-ecfd-f1962165d9ee
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: electric_vehicle_sales_by_state.electric_vehicles_sold
+	toColumn: electric_vehicle_sales_by_makers.electric_vehicles_sold
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Banking Domain - Customer Churb Analysis Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a2b88b16-dac2-45e4-a37c-351af53035b6"
+  }
+}

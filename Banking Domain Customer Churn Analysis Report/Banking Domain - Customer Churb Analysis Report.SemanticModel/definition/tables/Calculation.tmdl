@@ -1,0 +1,65 @@
+table Calculation
+	lineageTag: 63e832b6-095f-4c5d-a750-b04809db27d8
+
+	measure 'Total Customer' = COUNT(Bank_Churn[CustomerId])
+		formatString: 0
+		lineageTag: 46a92903-95d5-49ca-bf78-24a9293a8fc5
+
+	measure 'Active Customers' = CALCULATE(COUNT(Bank_Churn[CustomerId]),ActiveCustomer[ActiveCategory] = "Active Member")
+		formatString: 0
+		lineageTag: 66b395f2-4713-4a42-abea-198a085496be
+
+	measure 'Inactive Customers' = CALCULATE(COUNT(Bank_Churn[CustomerId]),ActiveCustomer[ActiveCategory] = "Inactive Member")
+		formatString: 0
+		lineageTag: 58e1ab25-f330-400f-bc83-1f06f84b31fc
+
+	measure 'CreditCard Holder' = CALCULATE(COUNT(Bank_Churn[CustomerId]),CreditCard[Category]="credit card holder")
+		formatString: 0
+		lineageTag: 1309cd3a-803a-4fb5-bc16-d93db6203cf2
+
+	measure 'Non CreditCard Holders' = CALCULATE(COUNT(Bank_Churn[CustomerId]),CreditCard[Category]="non credit card holder")
+		formatString: 0
+		lineageTag: 6d7b73e6-32c7-4bc0-9052-d54a307d42b2
+
+	measure 'Exit Customers' = CALCULATE(COUNT(Bank_Churn[CustomerId]),'Exit Customer'[ExitCategory]="Exit")
+		formatString: 0
+		lineageTag: 33f4390a-c85d-4759-a214-93a758cfac87
+
+	measure 'Retain Customers' = CALCULATE(COUNT(Bank_Churn[CustomerId]),'Exit Customer'[ExitCategory]="Retain")
+		formatString: 0
+		lineageTag: 49227082-5a09-4e15-96e3-f02b21b0c3fd
+
+	measure 'Previous Month Exit Customers' = CALCULATE([Exit Customers],PREVIOUSMONTH('Date Master'[Date]))
+		formatString: 0
+		lineageTag: 6974749b-b4f2-4f1a-a729-df98762d1748
+
+	measure Churn% =
+			
+			var EC = [Exit Customers]
+			var TC = [Total Customer]
+			var churnper = DIVIDE(EC,TC)
+			return churnper
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9d015be7-aa6f-4be4-9d8c-28b519752ac5
+
+		changedProperty = FormatString
+
+	column Column1
+		dataType: string
+		lineageTag: f2af53f3-b209-49b2-a0b1-4fa15d1c8f15
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calculation-7b470dd4-b775-4d3f-974a-6b354f9e888e = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

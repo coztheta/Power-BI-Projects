@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Store FY 23"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d949a0b3-b2e1-4f98-826d-32643f2a057b"
+  }
+}

@@ -1,0 +1,35 @@
+table CreditCard
+	lineageTag: 78d824fc-b3b0-493a-830f-8f67a073a77b
+
+	column CreditID
+		dataType: int64
+		formatString: 0
+		lineageTag: a1b120cf-4a81-4d87-9447-aba96fbeee1e
+		summarizeBy: none
+		sourceColumn: CreditID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 911b2ed7-8e17-4a58-acdb-d5ce14087099
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CreditCard-1e90bf5f-708e-4ff2-95fc-36951aa4c093 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\HP\Downloads\CreditCard.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CreditID", Int64.Type}, {"Category", type text}})
+				in
+				    #"Changed Type"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

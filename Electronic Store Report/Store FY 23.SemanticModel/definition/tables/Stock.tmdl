@@ -1,0 +1,364 @@
+table Stock
+	lineageTag: 120ec258-44ef-4928-b88d-039e4631709e
+
+	column QTR
+		dataType: string
+		lineageTag: 02468c7e-1b75-4e5a-8e17-96a497f9f7cc
+		summarizeBy: none
+		sourceColumn: QTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week
+		dataType: string
+		lineageTag: bd5c64a5-57e1-46f8-92ab-16b7dd162546
+		summarizeBy: none
+		sourceColumn: Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column Branch
+		dataType: string
+		lineageTag: 1e87e916-cf71-48fe-9250-2c01085f0d83
+		summarizeBy: none
+		sourceColumn: Branch
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Branch City'
+		dataType: string
+		lineageTag: c5d57e9a-017c-4eaa-a0fa-8b620cba5b75
+		summarizeBy: none
+		sourceColumn: Branch City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 4725b5d2-5d3b-475f-a89e-ea423bed4a5f
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Code'
+		dataType: string
+		lineageTag: 96971ce7-6f99-44dd-8e77-0a0385bbb7c8
+		summarizeBy: none
+		sourceColumn: Item Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'UPC Code'
+		dataType: string
+		lineageTag: 427e6848-fce3-461b-83b3-56f7869eab81
+		summarizeBy: none
+		sourceColumn: UPC Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Name'
+		dataType: string
+		lineageTag: 25be7738-e601-4458-b77a-8749659f2a1c
+		summarizeBy: none
+		sourceColumn: Item Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'HSN Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 060cf1da-635b-4229-b9d0-c2b5a9826b9f
+		summarizeBy: count
+		sourceColumn: HSN Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Unit'
+		dataType: string
+		lineageTag: 6a1151f9-dc6c-4b98-8b52-823200288de0
+		summarizeBy: none
+		sourceColumn: Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 89a6e390-11e6-40db-978b-a1058152abfb
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column LOB
+		dataType: string
+		lineageTag: d9beef2f-fb25-465b-9967-ff71148d2a6e
+		summarizeBy: none
+		sourceColumn: LOB
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 6ed61dd0-cf69-4631-9387-a9a9fc2d3467
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Family'
+		dataType: string
+		lineageTag: 6c13d455-0484-42aa-aa73-cf37674da946
+		summarizeBy: none
+		sourceColumn: Product Family
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Variant Type'
+		dataType: string
+		lineageTag: 4128bb09-a641-4e02-9ff8-a8f5272bf4c8
+		summarizeBy: none
+		sourceColumn: Variant Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 3f4da535-0954-48ae-af87-edd98b7d1607
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Capacity
+		dataType: string
+		lineageTag: 2c17102f-14da-4315-a080-68f043919d6c
+		summarizeBy: none
+		sourceColumn: Capacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: 955e6572-ffc0-419b-83ea-956dc2aa021b
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Accessories Class'
+		dataType: string
+		lineageTag: d6637bf5-86a8-4dd2-91ed-8558b0403482
+		summarizeBy: none
+		sourceColumn: Accessories Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column UOM
+		dataType: string
+		lineageTag: 02ddc953-ee45-4b1f-8fa3-036341c6de04
+		summarizeBy: none
+		sourceColumn: UOM
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Serial / Batch No. 2'
+		dataType: string
+		lineageTag: bd1ea7ae-a724-47d2-896f-2efbb3a5e36f
+		summarizeBy: none
+		sourceColumn: Serial / Batch No. 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column MRP
+		dataType: int64
+		formatString: 0
+		lineageTag: d8bf7ce9-ea8b-4cfe-83cd-8d07a4bea5ca
+		summarizeBy: sum
+		sourceColumn: MRP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opening Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f5ed8b1-e6bd-4044-bc19-2991efdc83b9
+		summarizeBy: sum
+		sourceColumn: Opening Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opening Value (BT)'
+		dataType: double
+		lineageTag: d934467f-8edf-45fc-9581-0e51fc3f5091
+		summarizeBy: sum
+		sourceColumn: Opening Value (BT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Purchase Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8f185785-c844-42a0-8ddd-0ec4f29cd3be
+		summarizeBy: sum
+		sourceColumn: Purchase Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Purchase Return Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 036fe93b-56e0-4524-baa4-25dbcf993ae5
+		summarizeBy: sum
+		sourceColumn: Purchase Return Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Purchase Value (BT)'
+		dataType: double
+		lineageTag: fad70528-1897-4229-b7f8-bc632409337d
+		summarizeBy: sum
+		sourceColumn: Purchase Value (BT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Purchase Return Value (BT)'
+		dataType: int64
+		formatString: 0
+		lineageTag: f019ab7b-a5a2-4d46-9fe0-54723e7fc33e
+		summarizeBy: sum
+		sourceColumn: Purchase Return Value (BT)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transfer In Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6443726c-eadc-4ee1-9e3a-868f0ef4f8f6
+		summarizeBy: sum
+		sourceColumn: Transfer In Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transfer In Value (BT)'
+		dataType: double
+		lineageTag: 27196ab5-e8ab-4582-a252-db4dfdc01bfe
+		summarizeBy: sum
+		sourceColumn: Transfer In Value (BT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Transfer Out Qty'
+		dataType: int64
+		lineageTag: 4e48cec5-97aa-476b-83cf-735bbbb79402
+		summarizeBy: sum
+		sourceColumn: Transfer Out Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Transfer Out Value (BT)'
+		dataType: double
+		lineageTag: c7816793-a983-4325-88dc-326ba0213cb0
+		summarizeBy: sum
+		sourceColumn: Transfer Out Value (BT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sale Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: b5e086a8-a971-4965-87c8-184c0d12c82c
+		summarizeBy: sum
+		sourceColumn: Sale Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sale Value (BT)'
+		dataType: double
+		lineageTag: 73106cb1-64b6-4dc8-83c8-c7306e83b7dd
+		summarizeBy: sum
+		sourceColumn: Sale Value (BT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sale Return Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: d8aceb36-1bc7-4ef6-adec-0b7987862677
+		summarizeBy: sum
+		sourceColumn: Sale Return Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sale Return Value (BT)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 895b4c95-eeb6-4f5d-87d4-1a0af19bbc6e
+		summarizeBy: sum
+		sourceColumn: Sale Return Value (BT)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Closing Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: f825c2fc-5186-4083-865c-de08c6ba4d26
+		summarizeBy: sum
+		sourceColumn: Closing Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Closing Value (BT)'
+		dataType: double
+		lineageTag: 63a2a13a-4522-4e09-b047-ab0cc56f8939
+		summarizeBy: sum
+		sourceColumn: Closing Value (BT)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Stock' = SUM('Stock'[Opening Qty]) + SUM('Stock'[Transfer In Qty]) + SUM(Stock[Purchase Qty]) - SUM(Stock[Transfer Out Qty]) + SUM(Stock[Sale Return Qty])
+		lineageTag: a2511570-bfce-4538-b137-2a984af18b26
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Sales(%) = ```
+			DIVIDE(SUM('Stock'[Sale Qty]), [Total Stock]) 
+			```
+		formatString: 0%;-0%;0%
+		lineageTag: 0866bd67-83f1-47d4-b8a2-7014f4b7703a
+		summarizeBy: sum
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Stock-9ee44b07-6b1f-4d5c-a13c-d716c470c117 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Admin\Downloads\Stock Summary with Value (2).xlsx"), null, true),
+				    Sheet_Sheet = Source{[Item="Sheet",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"QTR", type text}, {"Week", type text}, {"Branch", type text}, {"Branch City", type text}, {"State", type text}, {"Item Code", type text}, {"UPC Code", type text}, {"Item Name", type text}, {"HSN Code", Int64.Type}, {"Business Unit", type text}, {"Category", type text}, {"LOB", type text}, {"Brand", type text}, {"Product Family", type text}, {"Variant Type", type text}, {"Type", type text}, {"Capacity", type text}, {"Color", type text}, {"Accessories Class", type any}, {"UOM", type text}, {"Serial / Batch No. 2", type any}, {"MRP", Int64.Type}, {"Opening Qty", Int64.Type}, {"Opening Value (BT)", type number}, {"Purchase Qty", Int64.Type}, {"Purchase Return Qty", Int64.Type}, {"Purchase Value (BT)", type number}, {"Purchase Return Value (BT)", Int64.Type}, {"Transfer In Qty", Int64.Type}, {"Transfer In Value (BT)", type number}, {"Transfer Out Qty", Int64.Type}, {"Transfer Out Value (BT)", type number}, {"Sale Qty", Int64.Type}, {"Sale Value (BT)", type number}, {"Sale Return Qty", Int64.Type}, {"Sale Return Value (BT)", Int64.Type}, {"Closing Qty", Int64.Type}, {"Closing Value (BT)", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

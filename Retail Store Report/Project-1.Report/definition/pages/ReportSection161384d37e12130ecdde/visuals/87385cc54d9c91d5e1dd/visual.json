@@ -1,0 +1,315 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "87385cc54d9c91d5e1dd",
+  "position": {
+    "x": 653.6683417085427,
+    "y": 115.7788944723618,
+    "z": 5000,
+    "height": 563.21608040201,
+    "width": 604.2211055276382
+  },
+  "visual": {
+    "visualType": "SandDance201929976D117A654D0BAB8E96507442D80B",
+    "query": {
+      "queryState": {
+        "values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Student Survey"
+                        }
+                      },
+                      "Property": "VideoGames"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Student Survey.VideoGames)"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Student Survey"
+                        }
+                      },
+                      "Property": "InDoor SportKits"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Student Survey.InDoor SportKits)"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Student Survey"
+                        }
+                      },
+                      "Property": "Age"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Student Survey.Age)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Student Survey"
+                      }
+                    },
+                    "Property": "VideoGames"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "sandDanceConfig": [
+        {
+          "properties": {
+            "setupJSON": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"renderer\":{\"advanced\":false,\"advancedOptions\":{\"bloomIntensity\":2,\"isBloomEnabled\":false,\"isDofEnabled\":false,\"dofFocusRange\":0.25,\"isFxaaEnabled\":false,\"isShadowEnabled\":true,\"isSsaoEnabled\":true},\"basicOptions\":{\"antialias\":true}},\"transition\":{\"type\":\"ordinal\"},\"transitionDurations\":{\"position\":600,\"stagger\":600,\"view\":600}}'"
+                }
+              }
+            },
+            "insightJSON": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"columns\":{\"x\":\"VideoGames\",\"y\":\"Age\",\"sort\":\"VideoGames\",\"size\":\"VideoGames\"},\"facetStyle\":\"wrap\",\"hideAxes\":false,\"hideLegend\":false,\"signalValues\":{\"RoleZ_ProportionSignal\":0.6,\"Text_ScaleSignal\":1.2,\"Text_AngleXSignal\":30,\"Text_AngleYSignal\":0,\"Mark_OpacitySignal\":1,\"RoleColor_BinCountSignal\":7,\"RoleColor_ReverseSignal\":false,\"RoleX_BinsSignal\":10,\"RoleY_BinsSignal\":10},\"chart\":\"density\",\"view\":\"2d\"}'"
+                }
+              }
+            },
+            "snapshotsJSON": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[]'"
+                }
+              }
+            },
+            "tooltipExclusionsJSON": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[]'"
+                }
+              }
+            },
+            "imageHolderJSON": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"img\":null,\"backgroundImageColumnBounds\":[{\"columnName\":\"Age\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":10842,\"stringValue\":\"10842\"},{\"columnName\":\"Age\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":10842,\"stringValue\":\"10842\"},{\"columnName\":\"Age\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":10842,\"stringValue\":\"10842\"},{\"columnName\":\"Age\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":10842,\"stringValue\":\"10842\"},{\"columnName\":\"InDoor SportKits\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":50040.73,\"stringValue\":\"50040.73\"},{\"columnName\":\"InDoor SportKits\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":50040.73,\"stringValue\":\"50040.73\"},{\"columnName\":\"InDoor SportKits\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":50040.73,\"stringValue\":\"50040.73\"},{\"columnName\":\"InDoor SportKits\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":50040.73,\"stringValue\":\"50040.73\"},{\"columnName\":\"VideoGames\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":97809.75,\"stringValue\":\"97809.75\"},{\"columnName\":\"VideoGames\",\"dimension\":\"x\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":97809.75,\"stringValue\":\"97809.75\"},{\"columnName\":\"VideoGames\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"max\",\"numericValue\":97809.75,\"stringValue\":\"97809.75\"},{\"columnName\":\"VideoGames\",\"dimension\":\"y\",\"valid\":true,\"dataExtent\":\"min\",\"numericValue\":97809.75,\"stringValue\":\"97809.75\"}],\"showBackgroundImage\":false}'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ],
+      "sandDanceMainSettings": [
+        {
+          "properties": {
+            "darktheme": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showchrome": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "lockAspect": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "heading": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Heading2'"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Total amount of purchase by Store setting'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Arial'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#333333'"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

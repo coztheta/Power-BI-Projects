@@ -1,0 +1,31 @@
+table 'Q_Y Order Table'
+	lineageTag: cbbe5f57-8c1c-440a-89d4-b8463b4fbf61
+
+	column Q-Y
+		dataType: string
+		lineageTag: b96b4830-63bc-450e-85dc-0942cf1b2fcf
+		summarizeBy: none
+		sourceColumn: Q-Y
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Rank'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e590555-d7ec-4852-bfe7-dd976afb4e3a
+		summarizeBy: none
+		sourceColumn: Order Rank
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Q_Y Order Table' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Pc7LCcAwDATRXnR2IPrETsrI2bj/Nix5YY/vMDBzyq+XmTRRWS1lkEEOORRQQNl56mFX6uxKg13pZRepj11Jb4aHyvIwd9YG", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Q-Y" = _t, #"Order Rank" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Q-Y", type text}, {"Order Rank", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

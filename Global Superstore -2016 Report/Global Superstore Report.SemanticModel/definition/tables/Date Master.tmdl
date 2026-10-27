@@ -1,0 +1,50 @@
+table 'Date Master'
+	lineageTag: 7c668703-bf1f-47f4-aee2-d2994a83885f
+
+	column Date
+		formatString: Long Date
+		lineageTag: c41bd2a7-93ed-4b84-9ada-871fcf4398ab
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 67cc67a5-75b3-49b0-81de-d8744c3fd902
+			defaultHierarchy: LocalDateTable_ed9b38d5-e13f-4cac-9f1e-38feabd00e2d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year = 'Date Master'[Date].[Year]
+		formatString: 0
+		lineageTag: 7d20bb0d-c3ab-4a8b-b525-0ab281c061bf
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month = 'Date Master'[Date].[Month]
+		lineageTag: ed6041ec-256d-41c6-ad04-347ec19f9aa1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Qtr = 'Date Master'[Date].[Quarter]
+		lineageTag: d8aef824-b124-41b0-ac97-4183139d6ea6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year - Qtr' = CONCATENATE('Date Master'[Year],CONCATENATE("-",'Date Master'[Qtr]))
+		lineageTag: 87130547-6121-4f5c-a109-4c073299901d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Date Master-ececa300-c0e5-477f-9d21-9566be5faf37' = calculated
+		mode: import
+		source = CALENDAR(MIN(Orders[Order Date]),MAX(Orders[Order Date]))
+
+	annotation PBI_Id = aad71a9448b44aee853e90b65afbf116
+

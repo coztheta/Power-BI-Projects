@@ -1,0 +1,92 @@
+relationship 7c6e13a1-11bb-4c01-8f33-b721ed9efaab
+	joinOnDateBehavior: datePartOnly
+	fromColumn: blinkit_customer_feedback.feedback_date
+	toColumn: LocalDateTable_1d7e53e3-7eed-42cf-8e84-8dd5e60e77b5.Date
+
+relationship 3d80b72f-2873-404a-8b9f-a4e3e458a4eb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: blinkit_customers.registration_date
+	toColumn: LocalDateTable_53aa7be7-ce4b-4c92-90a7-e254173dd468.Date
+
+relationship 447bed61-30c2-4321-9087-6cebb58211b2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: blinkit_delivery_performance.promised_time
+	toColumn: LocalDateTable_d9627868-2ba1-4ad5-abaf-510724a1c01f.Date
+
+relationship 16d3eabb-8996-4fea-8e3e-ebb6455618eb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: blinkit_delivery_performance.actual_time
+	toColumn: LocalDateTable_9b201db7-8fc8-442b-ba78-e46f144e0b80.Date
+
+relationship 5c89cc96-5374-4920-8c01-f6ba3dc8963e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: blinkit_inventoryNew.date
+	toColumn: LocalDateTable_7db96aaf-31e6-4d8f-940c-b4f2019d5aae.Date
+
+relationship dad67af6-315c-4ce8-86c9-2a927f50884e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: blinkit_marketing_performance.date
+	toColumn: LocalDateTable_bc83dcb1-7bef-4ae5-966d-552815ec1651.Date
+
+relationship 428ff36a-6ccb-4f03-80cc-0ba71126656e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: blinkit_orders.promised_delivery_time
+	toColumn: LocalDateTable_3487195e-4f47-4c4e-a2f6-96fd474f1e67.Date
+
+relationship 97a1b8d0-ccb8-4345-ad02-e9fb8ab83834
+	joinOnDateBehavior: datePartOnly
+	fromColumn: blinkit_orders.actual_delivery_time
+	toColumn: LocalDateTable_c37a43c7-dc59-42dd-9e34-0b37c2b51f87.Date
+
+relationship ea4425a9-52ee-45e7-9f82-5a1ab6a99373
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date.Date
+	toColumn: LocalDateTable_b6a445d6-0c03-4a75-90ac-4ec23935967c.Date
+
+relationship e6caccbd-dc64-42de-8e03-027c85eef8df
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Master Table'.order_date
+	toColumn: LocalDateTable_c6e824ce-d575-40eb-9fc9-0d2048935eaf.Date
+
+relationship c307644b-a942-4221-a88f-36f199477672
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Master Table'.promised_delivery_time
+	toColumn: LocalDateTable_66c81657-689c-482f-910b-43ed411c999b.Date
+
+relationship 97ad56f3-184a-4b80-92f0-51efc4644e31
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Master Table'.actual_delivery_time
+	toColumn: LocalDateTable_6a39cdd9-812d-49ec-9580-21b93c0a297d.Date
+
+relationship d2635ab4-3b8a-4d40-8be1-e39e9ddacf4f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: blinkit_orders.order_date
+	toColumn: LocalDateTable_ba9bc4be-56fc-4dfa-a016-ca592cf45889.Date
+
+relationship b2bd59ec-b859-666b-2893-d38a0c8fb1c1
+	fromColumn: 'Master Table'.Date
+	toColumn: Date.Date
+
+relationship e9a28b57-5322-ba46-ef6c-5781f8f160d7
+	fromColumn: Marketing.date
+	toColumn: Date.Date
+
+relationship 799f9c86-2ed6-7a53-b140-d008d9956779
+	fromColumn: 'Master Table'.Value_Type
+	toColumn: Value_Type.Value_Type
+
+relationship d24b0f74-aef5-4ec5-a70c-856172604d00
+	fromColumn: Date.MonthIndex
+	toColumn: 'Time Period Table'.Value
+
+relationship 070162c4-2dd8-c033-1875-4a16d49951c6
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Inventory.product_id
+	toColumn: 'Master Table'.product_id
+
+relationship c74a93de-7956-d7db-5f56-549d8bad5634
+	isActive: false
+	fromColumn: Inventory.Date
+	toColumn: Date.Date
+

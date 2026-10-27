@@ -1,0 +1,46 @@
+table Rank_Table
+	lineageTag: 2cdd9bd8-bf7f-4d0e-ab6c-3b32fdd9af9b
+
+	column Option
+		lineageTag: 9c6fd939-0d28-433e-95bf-d53c948fed77
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Option]
+		sortByColumn: Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort
+		formatString: 0
+		lineageTag: 838d53b8-21e9-4e29-aeac-84a5adf95e75
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Sort]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		formatString: 0
+		lineageTag: 52b5336d-63d8-423b-8a18-6a71c968b9b1
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Rank_Table = calculated
+		mode: import
+		source =
+				
+				DATATABLE( "Option" , STRING , "Value", INTEGER , "Sort",INTEGER,
+				{
+				    {"All Sale", 0, 0},
+				    {"Top 5", 5, 1},
+				    {"Top 10", 10, 2},
+				    {"Top 50", 50, 3},
+				    {"Top 100", 100, 4}
+				}
+				)
+
+	annotation PBI_Id = a8fe9694ffc84cfa8c24f94442974928
+

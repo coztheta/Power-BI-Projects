@@ -1,0 +1,32 @@
+table CustomerInfo
+	lineageTag: 2197e3b6-56d4-4114-9784-aa6c64133172
+
+	column CustomerId
+		dataType: int64
+		formatString: 0
+		lineageTag: b91f0f54-e467-47ae-9294-d3144d5781f8
+		summarizeBy: none
+		sourceColumn: CustomerId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Surname
+		dataType: string
+		lineageTag: 9e9fa168-8520-4e55-8074-7123c7b60367
+		summarizeBy: none
+		sourceColumn: Surname
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CustomerInfo-ee093cb6-ff78-4dfe-bab3-35a30ef3f28c = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\HP\Downloads\CustomerInfo.csv"),[Delimiter=",", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CustomerId", Int64.Type}, {"Surname", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

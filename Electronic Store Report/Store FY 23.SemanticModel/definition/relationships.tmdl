@@ -1,0 +1,92 @@
+relationship f2313401-c790-4a49-acdb-657bd1e64f31
+	fromColumn: 'Footfall & Lead'.QTR
+	toColumn: QTR.QTR
+
+relationship fba8d017-bebb-4d59-b2ba-0555df0eba9a
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Footfall & Lead'.Branch
+	toColumn: Table1.Branch
+
+relationship c7b48259-2925-4104-9b79-6a74a86d31e0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Executive-Data.'Date of Joining'
+	toColumn: LocalDateTable_c67f5252-484c-40cc-984f-c36aa01fceb8.Date
+
+relationship bc682a92-fc89-45f5-84ad-86f38a1b82dd
+	fromColumn: Executive-Data.'Executive Name'
+	toColumn: Executive.'Executive Name'
+
+relationship 9cd2b3fb-e86b-46a0-8c01-5912cf6aad74
+	fromColumn: MAIN_DATA.Branch
+	toColumn: Table1.Branch
+
+relationship 344e4096-a317-46e9-9ca8-c90b65694da2
+	fromColumn: MAIN_DATA.Executive
+	toColumn: Executive.'Executive Name'
+
+relationship 2cee636a-c4b2-4f2d-b684-7fd87e63f760
+	fromColumn: MAIN_DATA.'LOB NEW'
+	toColumn: 'LOB NEW'.LOB
+
+relationship 282ce5d2-9d6d-4494-99a7-946c32dbc370
+	fromColumn: MAIN_DATA.QTR
+	toColumn: QTR.QTR
+
+relationship f070cb72-55dd-4c5b-bb73-40879b2e08aa
+	fromColumn: Executive-Data.Branch
+	toColumn: Table1.Branch
+
+relationship acd1f2ce-bd75-4e8c-97db-2c46ba556432
+	fromColumn: MAIN_DATA.WK
+	toColumn: WK.Week
+
+relationship bf4ba3f2-c26b-4452-af43-1c1780a5723c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'DATES (2)'.Dates
+	toColumn: LocalDateTable_c7b7df8f-d0e6-44ab-ab01-b75ee95349c7.Date
+
+relationship f893a380-e7cf-4032-ac76-b7144061ae83
+	fromColumn: 'DATES (2)'.Month
+	toColumn: MONTH.Month
+
+relationship cd33323e-599f-49ad-bbfc-f6c3a0259236
+	fromColumn: 'DATES (2)'.QTR
+	toColumn: QTR.QTR
+
+relationship f0299acf-e44c-40a2-ae57-699ef866e4f1
+	fromColumn: 'DATES (2)'.WK
+	toColumn: WK.Week
+
+relationship a34ab639-aa2b-4513-b4ef-98afbf70c2eb
+	isActive: false
+	fromColumn: 'Footfall & Lead'.Dates
+	toColumn: 'DATES (2)'.Dates
+
+relationship f829b439-ca02-4d91-808d-a4f5646f9cda
+	isActive: false
+	fromColumn: MAIN_DATA.TXNDate
+	toColumn: 'DATES (2)'.Dates
+
+relationship 2df7794f-cf6a-4540-874f-024afab1c638
+	fromColumn: Stock.QTR
+	toColumn: QTR.QTR
+
+relationship 63d767c0-31af-4efd-b42b-babea5962c0c
+	fromColumn: Stock.Branch
+	toColumn: Table1.Branch
+
+relationship c1240afe-999e-43fe-b292-4110b695d72b
+	fromColumn: Stock.Week
+	toColumn: WK.Week
+
+relationship 35dd02c8-34b8-41e8-974d-9c846a53912f
+	fromColumn: 'Footfall & Lead'.Week
+	toColumn: WK.Week
+
+relationship bf7a3896-0274-4962-a2ce-35731b75fa7c
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: MAIN_DATA.WK
+	toColumn: 'Footfall & Lead'.Week
+

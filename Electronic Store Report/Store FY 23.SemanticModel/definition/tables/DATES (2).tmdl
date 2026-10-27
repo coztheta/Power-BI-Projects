@@ -1,0 +1,106 @@
+table 'DATES (2)'
+	lineageTag: 67eb4362-ce63-4002-b440-867a55cbaab7
+
+	column QTR
+		dataType: string
+		lineageTag: c75d9be3-730c-4d49-b30e-8426e7776012
+		summarizeBy: none
+		sourceColumn: QTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dates
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b3cfaecd-4aad-49d7-8ec4-3263ac402add
+		summarizeBy: none
+		sourceColumn: Dates
+
+		variation Variation
+			isDefault
+			relationship: bf4ba3f2-c26b-4452-af43-1c1780a5723c
+			defaultHierarchy: LocalDateTable_c7b7df8f-d0e6-44ab-ab01-b75ee95349c7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column WK
+		dataType: string
+		lineageTag: 2e37e7c2-96ba-46f3-b5e0-3db1a4fc2cf6
+		summarizeBy: none
+		sourceColumn: WK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 86d89865-491f-4ca1-8461-110e2deadd20
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column5
+		dataType: string
+		lineageTag: b105eeff-0dd1-4542-b753-518f845934c7
+		summarizeBy: none
+		sourceColumn: Column5
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column6
+		dataType: string
+		lineageTag: 471a9de9-3298-45ce-bd62-a8f795947d6c
+		summarizeBy: none
+		sourceColumn: Column6
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column7
+		dataType: string
+		lineageTag: 35b958c1-5d2b-40d8-91c5-4995ac8f4dc2
+		summarizeBy: none
+		sourceColumn: Column7
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column8
+		dataType: string
+		lineageTag: 64312c2e-6375-4c80-92df-7f3facd030ec
+		summarizeBy: none
+		sourceColumn: Column8
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column9
+		dataType: string
+		lineageTag: 83493f69-3a2e-40e8-8f2a-1a1256fa9dd1
+		summarizeBy: none
+		sourceColumn: Column9
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column10
+		dataType: string
+		lineageTag: 3d4d5fdd-9f8f-47d6-b87a-1b4553ee0801
+		summarizeBy: none
+		sourceColumn: Column10
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DATES (2)-deaaba16-73fd-48d8-a7a5-f9eb7b787562' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\JAYDEEP\DATA\DATES.xlsx"), null, true),
+				    DATES_Sheet = Source{[Item="DATES",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(DATES_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"QTR", type text}, {"Dates", type date}, {"WK", type text}, {"Month", type text}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

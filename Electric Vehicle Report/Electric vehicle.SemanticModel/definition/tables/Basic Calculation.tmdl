@@ -1,0 +1,30 @@
+table 'Basic Calculation'
+	lineageTag: bba51bfe-b69b-4885-ae3e-af52fd2067c5
+
+	measure '2_EV Revenue_2022' = CALCULATE(CALCULATE(SUM('electric_vehicle_sales_by_makers'[electric_vehicles_sold]),'dim_date'[fiscal_year]="2022"),'electric_vehicle_sales_by_makers'[vehicle_category] = "2-Wheelers")
+		formatString: 0
+		lineageTag: 211c9c96-3b83-435f-ace7-8e949eeb6a38
+
+	measure Measure = SUM(electric_vehicle_sales_by_makers[electric_vehicles_sold])
+		formatString: 0
+		lineageTag: 042f23d3-2f0d-4363-b935-d42db452dbb4
+
+	column Column1
+		dataType: string
+		lineageTag: 829b5826-6a5a-484b-9729-83b86b9bc103
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Basic Calculation' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

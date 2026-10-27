@@ -1,0 +1,54 @@
+table Returns
+	lineageTag: 691a7b89-f536-4877-8748-fa0a28e191c8
+
+	column Returned
+		dataType: string
+		lineageTag: c09ed712-6aa9-4a93-acaf-2bdbcfb1296c
+		summarizeBy: none
+		sourceColumn: Returned
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order ID'
+		dataType: string
+		lineageTag: 63c311a5-6b3d-4d11-94a9-13b5bda8de8b
+		summarizeBy: none
+		sourceColumn: Order ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 9fecdb45-9fba-4f32-89ea-598b38291ed9
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Returned Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: 70b95f89-d477-4f22-a9fe-5408def985da
+		summarizeBy: sum
+		sourceColumn: Returned Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Returns-c5523849-c2e9-4e70-bc23-4aa4852c687e = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\HP\Downloads\global_superstore_2016.xlsx"), null, true),
+				    Returns_Sheet = Source{[Item="Returns",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Returns_Sheet,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Returned", type text}, {"Order ID", type text}, {"Region", type text}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type1", "Returned Order", each if [Returned] = "Yes" then 1 else 0),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Conditional Column",{{"Returned Order", Int64.Type}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,119 @@
+table blinkit_customers
+	lineageTag: d5fb672e-4640-41da-a9bc-5ffd55d6edee
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 8083563c-13ee-4607-8231-0c84b03a0233
+		summarizeBy: sum
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_name
+		dataType: string
+		lineageTag: a7a00f07-b536-41a6-a9a3-8035a79995f1
+		summarizeBy: none
+		sourceColumn: customer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: 1edf6780-2d9c-427c-b0ee-347e8fa0104e
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone
+		dataType: int64
+		formatString: 0
+		lineageTag: 48455986-a511-4840-a2f9-2a7aff583f5f
+		summarizeBy: sum
+		sourceColumn: phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column address
+		dataType: string
+		lineageTag: 1bf55abe-6c9a-428b-a877-48052cb5f535
+		summarizeBy: none
+		sourceColumn: address
+
+		annotation SummarizationSetBy = Automatic
+
+	column area
+		dataType: string
+		lineageTag: 011e2c54-8186-4640-b050-7391a8399f2e
+		summarizeBy: none
+		sourceColumn: area
+
+		annotation SummarizationSetBy = Automatic
+
+	column pincode
+		dataType: int64
+		formatString: 0
+		lineageTag: adfde5ad-807f-48c7-8404-75b678e3a321
+		summarizeBy: sum
+		sourceColumn: pincode
+
+		annotation SummarizationSetBy = Automatic
+
+	column registration_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9b3f9f76-a400-4992-a8ef-f406100c447c
+		summarizeBy: none
+		sourceColumn: registration_date
+
+		variation Variation
+			isDefault
+			relationship: 3d80b72f-2873-404a-8b9f-a4e3e458a4eb
+			defaultHierarchy: LocalDateTable_53aa7be7-ce4b-4c92-90a7-e254173dd468.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column customer_segment
+		dataType: string
+		lineageTag: 9d57a579-0843-46a8-b86d-57052f315d63
+		summarizeBy: none
+		sourceColumn: customer_segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_orders
+		dataType: int64
+		formatString: 0
+		lineageTag: c265dc4a-217e-4d33-949f-b71e3901c47d
+		summarizeBy: sum
+		sourceColumn: total_orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_order_value
+		dataType: double
+		lineageTag: f29bd224-fb03-408c-803a-fd8a043967bb
+		summarizeBy: sum
+		sourceColumn: avg_order_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition blinkit_customers = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Data Analyst\Blinkit Report\Dataset\blinkit_customers.csv"),[Delimiter=",", Columns=11, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"customer_id", Int64.Type}, {"customer_name", type text}, {"email", type text}, {"phone", Int64.Type}, {"address", type text}, {"area", type text}, {"pincode", Int64.Type}, {"registration_date", type date}, {"customer_segment", type text}, {"total_orders", Int64.Type}, {"avg_order_value", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,50 @@
+table Year_Quater_Month
+	lineageTag: 2a5fd7e3-afb1-47e9-90a6-9f72b5e69fb1
+
+	column Parameter
+		lineageTag: 90782622-ca57-4dc0-8570-6d45ebee1b78
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: 8099579b-0131-4f1d-9fde-70fb60f6f364
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 4873f1b1-1759-411e-b965-1dd4003c9f5e
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Year_Quater_Month = calculated
+		mode: import
+		source =
+				{
+				    ("Y", NAMEOF('Date'[Year]), 0),
+				    ("Q", NAMEOF('Date'[Quater]), 1),
+				    ("M-Y", NAMEOF('Date'[Month-Yr]), 2),
+				    ("M", NAMEOF('Date'[Month]), 3)
+				}
+
+	annotation PBI_Id = 46166d4529c745e5b62a7aabf4bc25ff
+

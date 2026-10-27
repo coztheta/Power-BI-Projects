@@ -1,0 +1,35 @@
+table People
+	lineageTag: da7aa3eb-cab3-430f-bce8-cdae169df84f
+
+	column Person
+		dataType: string
+		lineageTag: 837b9dd6-e746-4b65-a2b8-9d475e3c2f0d
+		summarizeBy: none
+		sourceColumn: Person
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: abd74e8b-25d8-4680-aecd-191112443052
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition People-6e3b9061-cb88-405e-a337-1a9e40c34de8 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\HP\Downloads\global_superstore_2016.xlsx"), null, true),
+				    People_Sheet = Source{[Item="People",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(People_Sheet,{{"Column1", type text}, {"Column2", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Person", type text}, {"Region", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

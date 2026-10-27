@@ -1,0 +1,106 @@
+table blinkit_products
+	lineageTag: 7f77e45b-2af2-4aee-93f0-65988cd5abcf
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: b1555f81-f8c5-45d4-a1f5-71dfe4a9210d
+		summarizeBy: sum
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: ef1d2307-0dcc-4cca-a211-8582558a99ba
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 5b37b8c8-2bdd-4791-a407-b6b580bfc8af
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand
+		dataType: string
+		lineageTag: b15b2805-aea9-4386-b7a7-735599d505fe
+		summarizeBy: none
+		sourceColumn: brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: double
+		lineageTag: a8afdb5c-cf86-4d3e-a8b1-338606d66a5e
+		summarizeBy: sum
+		sourceColumn: price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mrp
+		dataType: double
+		lineageTag: 179368a1-e77e-47eb-b404-480930a3a8f4
+		summarizeBy: sum
+		sourceColumn: mrp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column margin_percentage
+		dataType: int64
+		formatString: 0
+		lineageTag: 40af4f68-6fd6-4784-8718-6865b2c31840
+		summarizeBy: sum
+		sourceColumn: margin_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+	column shelf_life_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 49bb66e0-e9a5-4bd9-95ad-e473225d2c4a
+		summarizeBy: sum
+		sourceColumn: shelf_life_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column min_stock_level
+		dataType: int64
+		formatString: 0
+		lineageTag: 03619ace-5c8f-4b0a-823c-7423808832c7
+		summarizeBy: sum
+		sourceColumn: min_stock_level
+
+		annotation SummarizationSetBy = Automatic
+
+	column max_stock_level
+		dataType: int64
+		formatString: 0
+		lineageTag: f02851b0-2338-4ddc-ab66-2815a136ed67
+		summarizeBy: sum
+		sourceColumn: max_stock_level
+
+		annotation SummarizationSetBy = Automatic
+
+	partition blinkit_products = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Data Analyst\Blinkit Report\Dataset\blinkit_products.csv"),[Delimiter=",", Columns=10, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"product_id", Int64.Type}, {"product_name", type text}, {"category", type text}, {"brand", type text}, {"price", type number}, {"mrp", type number}, {"margin_percentage", Int64.Type}, {"shelf_life_days", Int64.Type}, {"min_stock_level", Int64.Type}, {"max_stock_level", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Electric vehicle"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "bd96be3b-7eab-4c36-89f4-525caf6c9dc1"
+  }
+}

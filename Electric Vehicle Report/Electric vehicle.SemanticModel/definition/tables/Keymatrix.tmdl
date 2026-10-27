@@ -1,0 +1,136 @@
+table Keymatrix
+	lineageTag: 470ab47e-4588-4491-a031-a7d7d2b67ae5
+
+	measure 'Penetration Rate' = ```
+			
+			                DIVIDE([Total EV Sale_State],[Total_Veicle_sales_State],0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1a96e014-01b2-44f3-938a-d7c93e11c0ec
+
+	measure 'Total EV Sale_State' = SUM(electric_vehicle_sales_by_state[electric_vehicles_sold])
+		formatString: 0
+		lineageTag: 51e6256a-7877-42d2-be8d-3af7886f6834
+
+	measure CAGR_MAKER_EV_% =
+			
+			
+			VAR FS_MK = CALCULATE(SUM(electric_vehicle_sales_by_makers[electric_vehicles_sold]), dim_date[fiscal_year] = MIN(dim_date[fiscal_year]))
+			VAR lS_MK = CALCULATE(SUM(electric_vehicle_sales_by_makers[electric_vehicles_sold]), dim_date[fiscal_year] = MAX(dim_date[fiscal_year]))
+			VAR NO_YEAR = CALCULATE(DISTINCTCOUNT(dim_date[fiscal_year])-1,ALL(dim_date))
+			
+			RETURN
+			
+			CALCULATE(
+			    IFERROR((lS_MK/FS_MK)^(1/NO_YEAR)-1,0),ALL(dim_date)
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: f12c074d-6f84-4c64-a3c9-ed18d3336a89
+
+	measure second_max_year = ```
+			
+			VAR toptwoyeras =  
+			    TOPN(2,
+			    VALUES(dim_date[Finacial_Year]),
+			    dim_date[Finacial_Year],
+			    DESC
+			    )
+			
+			RETURN
+			
+			MINX(toptwoyeras, dim_date[Finacial_Year])
+			```
+		lineageTag: d600eaea-1cb3-46cb-99b5-2939c1dfff50
+
+	measure SecondEndingvaluestateEV =
+			
+			
+			VAR secondmaxyear = [second_max_year]
+			RETURN
+			
+			CALCULATE(
+			    SUM(electric_vehicle_sales_by_state[electric_vehicles_sold]), FILTER(dim_date , dim_date[Finacial_Year] = [second_max_year])
+			)
+		formatString: 0
+		lineageTag: b6fa8cc1-cdb6-4ee0-b9c0-d5b14fd2bb30
+
+	measure ProjectedEVSales2024 = ```
+			
+			    [SecondEndingvaluestateEV] * POWER(1 + [CAGR STATE_2223], 1)
+			
+			```
+		lineageTag: 060218e0-776c-4727-8c69-6a81b53788ff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CAGR STATE_2223' = ```
+			
+			                CALCULATE(
+			                    IFERROR(([SecondEndingvaluestateEV] / [beginer cagr])^ (1/1)-1,0), ALL(dim_date)
+			                )
+			```
+		lineageTag: f37e18c3-78db-460e-b134-94cf3bf86c0f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'beginer cagr' = ```
+			
+			            CALCULATE(
+			                SUM(electric_vehicle_sales_by_state[electric_vehicles_sold]), dim_date[Finacial_Year] = MIN(dim_date[Finacial_Year])
+			            )
+			```
+		formatString: 0
+		lineageTag: 2fb07aa8-23e3-44f7-af5a-180bc665049c
+
+	measure 'ENDING CAGR' = ```
+			
+			            CALCULATE(
+			                SUM(electric_vehicle_sales_by_state[electric_vehicles_sold]), dim_date[Finacial_Year] = MAX(dim_date[Finacial_Year])
+			            )
+			```
+		formatString: 0
+		lineageTag: 532c50d2-23bd-4ce2-b7b6-29141b4c528b
+
+	measure ProjectedEVSales2030 = ```
+			
+			                    [ENDING CAGR] * POWER(1+[CAGR_Stae_Ev],6)
+			                    
+			```
+		lineageTag: e4be988a-1834-4f5a-87b9-428d017a88b2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Total_EV_Sales_Maker = SUM(electric_vehicle_sales_by_makers[electric_vehicles_sold])
+		formatString: 0
+		lineageTag: b2a89585-62c2-4cee-9af4-3dc407bcc7a2
+
+	measure Total_Veicle_sales_State = SUM(electric_vehicle_sales_by_state[total_vehicles_sold])
+		formatString: 0
+		lineageTag: a7f34988-0000-45b3-b130-325cc9aea451
+
+	measure CAGR_Stae_Ev =
+			
+			VAR initial_date = CALCULATE(SUM(electric_vehicle_sales_by_state[electric_vehicles_sold]), dim_date[fiscal_year] = MIN(dim_date[fiscal_year]))
+			var final_date_sales = CALCULATE(SUM(electric_vehicle_sales_by_state[electric_vehicles_sold]), dim_date[fiscal_year] = MAX(dim_date[fiscal_year]))
+			VAR noofyear = CALCULATE(DISTINCTCOUNT(dim_date[fiscal_year])-1,ALL(dim_date))
+			
+			RETURN
+			
+			CALCULATE(
+			    IFERROR((final_date_sales/initial_date)^(1/noofyear)-1,0), ALL(dim_date)
+			    )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: cbc5c468-04b2-41e4-852f-9d6f086b42e1
+
+	partition Keymatrix = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

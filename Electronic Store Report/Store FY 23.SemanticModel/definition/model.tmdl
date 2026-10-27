@@ -1,0 +1,32 @@
+model Model
+	culture: en-IN
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["MAIN_DATA","QTR","MONTH","WK","Table1","Footfall & Lead","FY","Executive-Data","Executive","LOB NEW","DATES (2)","Stock"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table MAIN_DATA
+ref table DateTableTemplate_613e5908-d702-4693-96b5-a17d4bd72d2a
+ref table QTR
+ref table MONTH
+ref table WK
+ref table Table1
+ref table 'Footfall & Lead'
+ref table FY
+ref table Executive-Data
+ref table LocalDateTable_c67f5252-484c-40cc-984f-c36aa01fceb8
+ref table Executive
+ref table 'LOB NEW'
+ref table 'DATES (2)'
+ref table LocalDateTable_c7b7df8f-d0e6-44ab-ab01-b75ee95349c7
+ref table Stock
+
+ref cultureInfo en-IN
+

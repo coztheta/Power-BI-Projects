@@ -1,0 +1,121 @@
+table blinkit_orders
+	lineageTag: 53e03bac-a294-4d10-a6df-49b96b54d574
+
+	column order_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 8b15ab07-666f-4546-bb1e-033f6fdd83ff
+		summarizeBy: sum
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f94703d9-9dfc-4d59-8501-4d2d9a50d212
+		summarizeBy: sum
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 477ff521-b8a4-46b4-b122-35c5d9769056
+		summarizeBy: none
+		sourceColumn: order_date
+
+		variation Variation
+			isDefault
+			relationship: d2635ab4-3b8a-4d40-8be1-e39e9ddacf4f
+			defaultHierarchy: LocalDateTable_ba9bc4be-56fc-4dfa-a016-ca592cf45889.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column promised_delivery_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5cd204b7-874c-4951-9839-6d18588e9492
+		summarizeBy: none
+		sourceColumn: promised_delivery_time
+
+		variation Variation
+			isDefault
+			relationship: 428ff36a-6ccb-4f03-80cc-0ba71126656e
+			defaultHierarchy: LocalDateTable_3487195e-4f47-4c4e-a2f6-96fd474f1e67.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_delivery_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2187e567-2daa-4dae-a8da-f98ec89d1dd7
+		summarizeBy: none
+		sourceColumn: actual_delivery_time
+
+		variation Variation
+			isDefault
+			relationship: 97a1b8d0-ccb8-4345-ad02-e9fb8ab83834
+			defaultHierarchy: LocalDateTable_c37a43c7-dc59-42dd-9e34-0b37c2b51f87.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_status
+		dataType: string
+		lineageTag: 9c02ee4e-8f0f-4c5e-9b6c-045e17d732ad
+		summarizeBy: none
+		sourceColumn: delivery_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_total
+		dataType: double
+		lineageTag: 18d61eef-b5b1-4ec7-a7b5-6cf6958a3e6d
+		summarizeBy: sum
+		sourceColumn: order_total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column payment_method
+		dataType: string
+		lineageTag: 733c0cc9-005c-4141-9188-46c240363053
+		summarizeBy: none
+		sourceColumn: payment_method
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_partner_id
+		dataType: int64
+		formatString: 0
+		lineageTag: b2cd9555-2117-4b66-985d-35b76b411a8f
+		summarizeBy: sum
+		sourceColumn: delivery_partner_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 28123dad-d8d1-4549-9a21-b0a2f606877f
+		summarizeBy: sum
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition blinkit_orders = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Data Analyst\Blinkit Report\Dataset\blinkit_orders.csv"),[Delimiter=",", Columns=10, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"order_id", Int64.Type}, {"customer_id", Int64.Type}, {"order_date", type datetime}, {"promised_delivery_time", type datetime}, {"actual_delivery_time", type datetime}, {"delivery_status", type text}, {"order_total", type number}, {"payment_method", type text}, {"delivery_partner_id", Int64.Type}, {"store_id", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

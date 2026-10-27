@@ -1,0 +1,116 @@
+table 'Color Sheet'
+	lineageTag: d95bba72-8910-4bf3-8f87-40a34ca72b06
+
+	column Mode
+		dataType: string
+		lineageTag: f80272cd-0686-4288-9157-71e53b5e2330
+		summarizeBy: none
+		sourceColumn: Mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column bg
+		dataType: string
+		lineageTag: 723cfe32-5b79-4f7d-986d-9e512f78407b
+		summarizeBy: none
+		sourceColumn: bg
+
+		annotation SummarizationSetBy = Automatic
+
+	column bg-visual
+		dataType: string
+		lineageTag: b3ffd326-de04-4fa1-a5ff-c0584dd0f845
+		summarizeBy: none
+		sourceColumn: bg-visual
+
+		annotation SummarizationSetBy = Automatic
+
+	column bg-2
+		dataType: string
+		lineageTag: 69b7fbbe-3bc3-419e-9092-c352d175c63b
+		summarizeBy: none
+		sourceColumn: bg-2
+
+		annotation SummarizationSetBy = Automatic
+
+	column text
+		dataType: string
+		lineageTag: 4eccd019-93bb-435d-968a-84175794b643
+		summarizeBy: none
+		sourceColumn: text
+
+		annotation SummarizationSetBy = Automatic
+
+	column text-2
+		dataType: string
+		lineageTag: 02052d94-20e5-4871-8dfa-3090ad66aafd
+		summarizeBy: none
+		sourceColumn: text-2
+
+		annotation SummarizationSetBy = Automatic
+
+	column red-txt
+		dataType: string
+		lineageTag: 7d4d0c01-0843-40b2-8b61-06bb1e9b1b48
+		summarizeBy: none
+		sourceColumn: red-txt
+
+		annotation SummarizationSetBy = Automatic
+
+	column red-bg
+		dataType: string
+		lineageTag: 26d12b06-8b9c-46bc-b9af-f8ae77aded60
+		summarizeBy: none
+		sourceColumn: red-bg
+
+		annotation SummarizationSetBy = Automatic
+
+	column green-txt
+		dataType: string
+		lineageTag: 4cea4f44-50cb-4448-8ccf-564ac5ee3177
+		summarizeBy: none
+		sourceColumn: green-txt
+
+		annotation SummarizationSetBy = Automatic
+
+	column greeen-bg
+		dataType: string
+		lineageTag: b3bb4c2c-56a1-4d1d-b3d3-026f2b2c6f7e
+		summarizeBy: none
+		sourceColumn: greeen-bg
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'check icon'
+		dataType: string
+		lineageTag: 6519ccd8-9efd-49c4-9465-0ed11faf5024
+		summarizeBy: none
+		sourceColumn: check icon
+
+		annotation SummarizationSetBy = Automatic
+
+	column Icon
+		dataType: string
+		lineageTag: 261f9910-dc27-4a8e-b0ae-0fadd93d8d9e
+		summarizeBy: none
+		sourceColumn: Icon
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Color Sheet' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Data Analyst\Trading Report\ColorCodes.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Sheet1_Sheet,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type text}, {"Column9", type text}, {"Column10", type text}, {"Column11", type text}, {"Column12", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Mode", type text}, {"bg", type text}, {"bg-visual", type text}, {"bg-2", type text}, {"text", type text}, {"text-2", type text}, {"red-txt", type text}, {"red-bg", type text}, {"green-txt", type text}, {"greeen-bg", type text}, {"check icon", type text}, {"Icon", type text}}),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Changed Type1", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null})))
+				in
+				    #"Removed Blank Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

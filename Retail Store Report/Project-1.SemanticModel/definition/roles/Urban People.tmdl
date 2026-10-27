@@ -1,0 +1,7 @@
+role 'Urban People'
+	modelPermission: read
+
+	tablePermission 'Student Survey' = [Store Setting] = "Urban"
+
+	annotation PBI_Id = 55666ee680c8418f8f510f5889cfdfa4
+

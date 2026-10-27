@@ -1,0 +1,119 @@
+table 'Customer Measure'
+	lineageTag: a82b36ad-ecde-4452-a787-b96e8908ee08
+
+	measure Total_Customer_Count = DISTINCTCOUNT('Master Table'[customer_id])
+		formatString: 0
+		lineageTag: deb74b70-019d-44ec-8a2d-7bb33ca0a8c8
+
+	measure 'New Customer' = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT('Master Table'[customer_id]),
+			    FILTER('Master Table',
+			    MIN('Master Table'[order_date]) >= MIN('Date'[Date]) 
+			    && MAX('Master Table'[order_date]) <= MAX('Date'[Date])
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: 6025f0ae-507a-48c1-ba4c-b58abb8d3ebc
+
+	measure Customer_Count_by_order = ```
+			
+			VAR ordervalue = SELECTEDVALUE(ORDER_Parameter[ORDER_Parameter])
+			
+			RETURN
+			IF(
+			        ISBLANK(ordervalue),
+			        0,
+			        COUNTROWS(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    SUMMARIZE(
+			                        'Master Table', 
+			                        'Master Table'[customer_id]
+			                    ),
+			                    "OrderCount", COUNTX(
+			                        FILTER('Master Table', 'Master Table'[customer_id] = EARLIER('Master Table'[customer_id])),
+			                        'Master Table'[order_id]
+			                    )
+			                ),
+			                [OrderCount] = ordervalue
+			            )
+			        )
+			    )
+			```
+		formatString: 0
+		lineageTag: 4e9948dd-3274-4c46-bc58-575eb02f2f9e
+
+	measure 'new customer count' = ```
+			
+			
+			VAR selected_date = SELECTEDVALUE('Master Table'[order_date])
+			VAR order_2023 = selected_date = 2023
+			
+			RETURN
+			
+			COUNTROWS(FILTER(DISTINCT('Master Table'[customer_id]),NOT(CALCULATE(DISTINCTCOUNT('Master Table'[customer_id]), order_2023)) && selected_date = 2024 ))
+			
+			```
+		lineageTag: f96de6e9-9d1c-4afa-9e44-e3fc27bb7d89
+
+	measure TestCustomerCount =
+			
+			COUNTROWS(
+			    FILTER(
+			        ADDCOLUMNS(
+			            SUMMARIZE('Master Table', 'Master Table'[customer_id]),
+			            "OrderCount", COUNTX(FILTER('Master Table', 'Master Table'[customer_id] = EARLIER('Master Table'[customer_id])),'Master Table'[order_id])
+			        ),
+			        [OrderCount] = 6 -- Replace with a static value for testing
+			    )
+			)
+		formatString: 0
+		lineageTag: 832a2730-b1a8-475b-823f-60bf2f8a7f1d
+
+	measure card = "Customer who order more then " & MAX(ORDER_Parameter[ORDER_Parameter]) & " times"
+		lineageTag: 153950c6-cb05-4019-b1e3-c90ccc5c75d3
+
+	measure 'Newcustomerby year' =
+			
+			
+			CALCULATE(DISTINCTCOUNT('Master Table'[customer_id]),
+			FILTER('Master Table', YEAR('Master Table'[order_date]) = YEAR(RELATED('Date'[Year])) && 'Master Table'[order_id] > 1
+			)
+			)
+		formatString: 0
+		lineageTag: 97a0b35c-6b93-4e97-ba95-c6995bb6fe2c
+
+	measure 'repeat Customer by 2023' =
+			CALCULATE(DISTINCTCOUNT('Master Table'[customer_id]),
+			YEAR('Master Table'[order_date]) = 2023 ,  'Master Table'[order_id] > 0)
+		formatString: 0
+		lineageTag: d1bf6086-a237-4eb9-8a14-d6d7717dd3b8
+
+	measure 'repeat Customer by 2024' =
+			CALCULATE(DISTINCTCOUNT('Master Table'[customer_id]),
+			YEAR('Master Table'[order_date]) = 2024 ,  'Master Table'[order_id] > 0)
+		formatString: 0
+		lineageTag: 9ac211df-d9bb-4850-88ba-19a240f34ef7
+
+	column Column1
+		dataType: string
+		lineageTag: 385790b2-64d1-42e0-9241-d4f525057181
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Customer Measure' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,22 @@
+table 'LOB NEW'
+	lineageTag: ab67b83a-98a8-4746-a6bd-67a30cd10c3e
+
+	column LOB
+		dataType: string
+		lineageTag: f9095ca8-1831-4906-a707-eab325001110
+		summarizeBy: none
+		sourceColumn: LOB
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'LOB NEW-c1dae1e5-edb4-4d8b-9e1e-77820948fd1e' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("PcvNCoAgEATgV1k8x0L/XbdVUDBdLOggvv9rZAbd5htmclY9ghMbg1Gly2p4RbrlEeEgbnFCuOli2zAjkEsS9dm4VIoH4m+6IuyJgjb6rzYEpmRAPIX6KQ8=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [LOB = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"LOB", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

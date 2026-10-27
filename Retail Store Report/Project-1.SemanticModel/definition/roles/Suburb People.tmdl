@@ -1,0 +1,7 @@
+role 'Suburb People'
+	modelPermission: read
+
+	tablePermission 'Student Survey' = [Store Setting] = "Suburb"
+
+	annotation PBI_Id = bafbca74eb8f41fba60783318dd81034
+

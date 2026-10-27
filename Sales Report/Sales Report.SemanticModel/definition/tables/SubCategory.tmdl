@@ -1,0 +1,46 @@
+table SubCategory
+	lineageTag: 00fa4c59-d9ca-437f-8e98-77a1d4579252
+
+	column SubCategoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 7bf54aa2-1327-4b22-b554-87f49c3f22a9
+		summarizeBy: none
+		sourceColumn: SubCategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CategoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d38a5a73-e1cc-425a-a44f-8c40d22a65a4
+		summarizeBy: none
+		sourceColumn: CategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SubCategory Name'
+		dataType: string
+		lineageTag: 5e53b16a-401a-440f-aeb8-52b8f773e5f0
+		summarizeBy: none
+		sourceColumn: SubCategory Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SubCategory-34498afb-ff1b-4b60-ac6f-ae14a675cc91 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\HP\Downloads\Dimensions\SubCategories.xlsx"), null, true),
+				    SubCategory_Table = Source{[Item="SubCategory",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(SubCategory_Table,{{"SubCategoryKey", Int64.Type}, {"CategoryKey", type text}, {"SubCategory Name", type text}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type","ID - ","",Replacer.ReplaceText,{"CategoryKey"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","ID -","",Replacer.ReplaceText,{"CategoryKey"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Replaced Value1",{{"CategoryKey", Int64.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

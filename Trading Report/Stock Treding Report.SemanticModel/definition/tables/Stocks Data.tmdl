@@ -1,0 +1,178 @@
+table 'Stocks Data'
+	lineageTag: c074a5c2-07c2-4b87-8585-56ee21d0a25a
+
+	column 'Company Name'
+		dataType: string
+		lineageTag: e4e6a021-df3b-4100-bd94-bc7c03598533
+		summarizeBy: none
+		sourceColumn: Company Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: ac191d47-b9a5-43e9-aad1-b1c01d43cef2
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Logo
+		dataType: string
+		lineageTag: df71a463-b62a-4756-9539-cbb6bc2d90a7
+		summarizeBy: none
+		sourceColumn: Logo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: dd mmmm yyyy
+		lineageTag: 14b69f5e-4e13-4991-9fe1-357cbc7c82b4
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 5df15b84-434e-49ca-b186-e702eebb9d3b
+			defaultHierarchy: LocalDateTable_5bed43d3-f6cd-47a5-8229-4345ad5a8426.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Open
+		dataType: decimal
+		formatString: "₹"\ #,0.0;#,0.0\ -"₹";"₹"\ #,0.0
+		lineageTag: b9082fbe-3a2c-460d-9230-2fb4f631deb3
+		summarizeBy: sum
+		sourceColumn: Open
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	column High
+		dataType: decimal
+		formatString: "₹"\ #,0.0;#,0.0\ -"₹";"₹"\ #,0.0
+		lineageTag: 19bae4b7-f490-4920-b054-1ba4fd656cd4
+		summarizeBy: sum
+		sourceColumn: High
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	column Low
+		dataType: decimal
+		formatString: "₹"\ #,0.0;#,0.0\ -"₹";"₹"\ #,0.0
+		lineageTag: 4e78c2c6-c7f9-4ef2-b4dc-69fdd9e47f41
+		summarizeBy: sum
+		sourceColumn: Low
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	column Close
+		dataType: decimal
+		formatString: "₹"\ #,0.0;#,0.0\ -"₹";"₹"\ #,0.0
+		lineageTag: dd02185e-2ee1-4f8e-9118-41a128e82d44
+		summarizeBy: sum
+		sourceColumn: Close
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	column 'Adj Close'
+		dataType: decimal
+		formatString: "₹"\ #,0.###############;#,0.###############\ -"₹";"₹"\ #,0.###############
+		lineageTag: f3a9a7ce-258c-4e40-81b8-bde8e2a3f86a
+		summarizeBy: sum
+		sourceColumn: Adj Close
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	column Volume
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ce33b4b-2268-4337-90ce-961ab083d2b0
+		summarizeBy: sum
+		sourceColumn: Volume
+
+		annotation SummarizationSetBy = Automatic
+
+	column Symbol
+		dataType: string
+		lineageTag: 6bda9ea9-7676-41f3-94c1-5921083b4e9f
+		summarizeBy: none
+		sourceColumn: Symbol
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stock Name.2'
+		dataType: string
+		lineageTag: 56905189-12a8-4bbb-bcff-114fa636f1d2
+		summarizeBy: none
+		sourceColumn: Stock Name.2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_Category =
+			
+			VAR TodayDate = TODAY()
+			VAR StartOfYears = DATE(YEAR(TodayDate), 1, 1)
+			VAR FiveDaysAgo = TodayDate - 7
+			VAR ThreeMonthsAgo = EOMONTH(TodayDate, -3) + 1
+			VAR SixMonthsAgo = EOMONTH(TodayDate, -6) + 1
+			VAR OneYearAgo = EOMONTH(TodayDate, -12) + 1
+			VAR FiveYearsAgo = EOMONTH(TodayDate, -60) + 1
+			VAR MaxDate = CALCULATE(MAX('Stocks Data'[Date]), ALL('Stocks Data'[Date]))
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        'Stocks Data'[Date] > TodayDate, "Furtur",
+			        'Stocks Data'[Date] = TodayDate, "1D",
+			        'Stocks Data'[Date] >= FiveDaysAgo && 'Stocks Data'[Date] < TodayDate, "5D",
+			        'Stocks Data'[Date] >= ThreeMonthsAgo && 'Stocks Data'[Date] < TodayDate, "3M",
+			        'Stocks Data'[Date] >= SixMonthsAgo && 'Stocks Data'[Date] < ThreeMonthsAgo, "6M",
+			        'Stocks Data'[Date] >= StartOfYears && 'Stocks Data'[Date] < TodayDate, "YTD",
+			        'Stocks Data'[Date] >= OneYearAgo && 'Stocks Data'[Date] < StartOfYears, "1Y",
+			        'Stocks Data'[Date] >= FiveYearsAgo && 'Stocks Data'[Date] < OneYearAgo, "5Y",
+			        'Stocks Data'[Date] >= MaxDate && 'Stocks Data'[Date] < FiveYearsAgo, "Max",
+			        "Older"
+			    )
+		lineageTag: 81b5d217-4e8b-46d3-97a0-2cd50572288e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Stocks Data' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Data Analyst\Trading Report\tickername.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Sheet1_Sheet,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Stock Symbol", type text}, {"Company Name", type text}, {"Type", type text}, {"Logo", type text}}),
+				    #"Invoked Custom Function" = Table.AddColumn(#"Changed Type1", "Stock", each TCS([Stock Symbol])),
+				    #"Expanded Stock" = Table.ExpandTableColumn(#"Invoked Custom Function", "Stock", {"Date", "Open", "High", "Low", "Close", "Adj Close", "Volume"}, {"Date", "Open", "High", "Low", "Close", "Adj Close", "Volume"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Expanded Stock",{{"Date", type date}, {"Open", Currency.Type}, {"High", Currency.Type}, {"Low", Currency.Type}, {"Close", Currency.Type}, {"Adj Close", Currency.Type}, {"Volume", Int64.Type}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type2",{{"Stock Symbol", "Stock Name"}}),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Renamed Columns", "Stock Name", Splitter.SplitTextByDelimiter(".", QuoteStyle.Csv), {"Stock Name.1", "Stock Name.2"}),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Stock Name.1", type text}, {"Stock Name.2", type text}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Changed Type3",{{"Stock Name.1", "Symbol"}})
+				in
+				    #"Renamed Columns1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

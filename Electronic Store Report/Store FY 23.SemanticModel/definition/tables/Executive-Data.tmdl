@@ -1,0 +1,138 @@
+table Executive-Data
+	lineageTag: 20dc60b0-a2bd-4629-8928-870b2faeb80a
+
+	column Region
+		dataType: string
+		lineageTag: b67881bf-e3f4-4d16-9ea9-2546033df4af
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 1323b0c6-a2a7-48ec-a868-5b16e6fda47a
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Branch
+		dataType: string
+		lineageTag: f4a2702c-bfaf-4a4f-aa5a-0d9282e10713
+		summarizeBy: none
+		sourceColumn: Branch
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Employee Number'
+		dataType: string
+		lineageTag: 976dcea4-17c2-4114-b4e1-c3eaad10e713
+		summarizeBy: none
+		sourceColumn: Employee Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Executive Name'
+		dataType: string
+		lineageTag: 75efbd6c-5eb3-4ea9-8332-1cb6a2cd5085
+		summarizeBy: none
+		sourceColumn: Executive Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: 24555c1e-eb2e-469c-8e6a-5f00ca1d1d6c
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date of Joining'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0940bf58-e5d0-42a1-8cda-dc61e3818952
+		summarizeBy: none
+		sourceColumn: Date of Joining
+
+		variation Variation
+			isDefault
+			relationship: c7b48259-2925-4104-9b79-6a74a86d31e0
+			defaultHierarchy: LocalDateTable_c67f5252-484c-40cc-984f-c36aa01fceb8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Job Title'
+		dataType: string
+		lineageTag: 27d7c5e8-ae5b-4f80-b5f0-8611cec8ae79
+		summarizeBy: none
+		sourceColumn: Job Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Number of Days'
+		dataType: int64
+		formatString: 0
+		lineageTag: 684a6aad-f741-40d7-be42-1ff316e63893
+		summarizeBy: sum
+		sourceColumn: Number of Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tenure
+		dataType: string
+		lineageTag: 8def5231-150a-4a47-8488-c1d30572c36c
+		summarizeBy: none
+		sourceColumn: Tenure
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column11
+		dataType: string
+		lineageTag: cbd59418-0e07-4623-aaac-e53877233a49
+		summarizeBy: none
+		sourceColumn: Column11
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column12
+		dataType: string
+		lineageTag: aca23a24-d197-4103-bc0d-fed3e8194265
+		summarizeBy: none
+		sourceColumn: Column12
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column13
+		dataType: string
+		lineageTag: 95b6b74e-07a1-43ab-9950-b4c552363d9f
+		summarizeBy: none
+		sourceColumn: Column13
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column14
+		dataType: string
+		lineageTag: 8fa9329c-8dfc-413f-acbc-12cadfa0e5b4
+		summarizeBy: none
+		sourceColumn: Column14
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Executive-Data-25fb3d03-90bd-4b46-bdf5-17d153df24aa = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\JAYDEEP\DATA\All Employees-Data.xlsx"), null, true),
+				    #"Executive-Data_Sheet" = Source{[Item="Executive-Data",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Executive-Data_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Region", type text}, {"City", type text}, {"Location", type text}, {"Employee Number", type text}, {"Full Name", type text}, {"Email", type text}, {"Date of Joining", type date}, {"Job Title", type text}, {"Number of Days", Int64.Type}, {"Tenure", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Full Name", "Executive Name"}, {"Location", "Branch"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

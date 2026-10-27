@@ -1,0 +1,5 @@
+relationship 5df15b84-434e-49ca-b186-e702eebb9d3b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Stocks Data'.Date
+	toColumn: LocalDateTable_5bed43d3-f6cd-47a5-8229-4345ad5a8426.Date
+

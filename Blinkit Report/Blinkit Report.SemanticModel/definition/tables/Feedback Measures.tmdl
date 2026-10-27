@@ -1,0 +1,34 @@
+table 'Feedback Measures'
+	lineageTag: aeb4bff9-06a7-4bac-af07-963e0bc294c7
+
+	measure 'Total Feedback' = DISTINCTCOUNT('Master Table'[order_id])
+		formatString: 0
+		lineageTag: 735b3921-988d-41ec-927e-217c71c017fd
+
+	measure Rating =
+			
+			VAR rating_  = SELECTEDVALUE('Master Table'[feedback rating])
+			
+			RETURN
+			"Star" & rating_
+		lineageTag: b6bfb200-5812-471a-963e-0639bd82351c
+
+	column Column1
+		dataType: string
+		lineageTag: c3292ff4-671b-4cd0-8c74-d6ae11508750
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Feedback Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

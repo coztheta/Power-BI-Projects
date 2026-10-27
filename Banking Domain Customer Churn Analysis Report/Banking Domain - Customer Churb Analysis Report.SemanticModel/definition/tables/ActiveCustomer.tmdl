@@ -1,0 +1,33 @@
+table ActiveCustomer
+	lineageTag: 92f9927a-3f2e-4e91-8cd9-28f5e7bd556a
+
+	column ActiveID
+		dataType: int64
+		formatString: 0
+		lineageTag: a10d3d3e-77e2-43c0-9466-e324d6743c47
+		summarizeBy: none
+		sourceColumn: ActiveID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActiveCategory
+		dataType: string
+		lineageTag: 963528a3-dcb5-42f1-86ce-92c3c0645674
+		summarizeBy: none
+		sourceColumn: ActiveCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ActiveCustomer-7b196ae8-5a53-4b6d-b13b-7432ded68852 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\HP\Downloads\ActiveCustomer.xlsx"), null, true),
+				    ActiveCustomer_Sheet = Source{[Item="ActiveCustomer",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(ActiveCustomer_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ActiveID", Int64.Type}, {"ActiveCategory", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

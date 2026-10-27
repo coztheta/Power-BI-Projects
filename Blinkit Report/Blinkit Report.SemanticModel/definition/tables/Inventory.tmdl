@@ -1,0 +1,102 @@
+table Inventory
+	lineageTag: 4b086c36-271c-402a-a39c-a01b188ccfee
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 2abe5dbb-d205-4333-9667-3c6ba7665206
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: 87ec9599-5899-49ad-8186-d83593263f8c
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 913e30e5-0728-41fb-81be-75344be773d3
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand
+		dataType: string
+		lineageTag: b1d2ee9a-5539-4372-8d0a-b0376d5b892b
+		summarizeBy: none
+		sourceColumn: brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: double
+		lineageTag: 1fcf912f-f8ee-446a-bde1-ef45b4409e13
+		summarizeBy: sum
+		sourceColumn: price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: string
+		lineageTag: 2e195436-bb0b-4b27-8c3d-c761180ac22d
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stock_Type
+		dataType: string
+		lineageTag: 53bb751a-6509-411e-bffe-82b475cde90b
+		summarizeBy: none
+		sourceColumn: Stock_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 620cb39c-901f-40ff-8768-4a262e638d18
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: double
+		lineageTag: a7bc2fac-96b1-4162-91ce-c0d9722a3128
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Inventory = m
+		mode: import
+		source =
+				let
+				    Source = blinkit_products,
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"mrp", "margin_percentage", "shelf_life_days", "min_stock_level", "max_stock_level"}),
+				    #"Merged Queries" = Table.NestedJoin(#"Removed Columns", {"product_id"}, blinkit_inventory, {"product_id"}, "blinkit_inventory", JoinKind.LeftOuter),
+				    #"Expanded blinkit_inventory" = Table.ExpandTableColumn(#"Merged Queries", "blinkit_inventory", {"date", "stock_received", "damaged_stock"}, {"blinkit_inventory.date", "blinkit_inventory.stock_received", "blinkit_inventory.damaged_stock"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded blinkit_inventory",{{"blinkit_inventory.date", "Date"}, {"blinkit_inventory.stock_received", "stock_received"}, {"blinkit_inventory.damaged_stock", "damaged_stock"}}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Renamed Columns", {"product_id", "product_name", "category", "brand", "price", "Date"}, "Attribute", "Value"),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Unpivoted Columns",{{"Attribute", "Stock_Type"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns1", "v", each [price] * [Value]),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Added Custom",{{"Value", "Quantity"}, {"v", "Value"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns2",{{"Value", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

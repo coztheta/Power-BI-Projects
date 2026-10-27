@@ -1,0 +1,31 @@
+table 'M_Y Order Table'
+	lineageTag: 4af5b397-2050-4dc9-8608-45b1663da531
+
+	column Month-Year
+		dataType: string
+		lineageTag: 455c1a6e-f9c6-430e-9a8b-47f8e356bb79
+		summarizeBy: none
+		sourceColumn: Month-Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Rank
+		dataType: int64
+		formatString: 0
+		lineageTag: d99b2caa-6d5a-46c7-8813-48315d39d1bf
+		summarizeBy: none
+		sourceColumn: Order_Rank
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'M_Y Order Table' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Rc69CsJAGETRd9k6wv4nWwbEQlALy5AihsVGNAQj+PZm54tMeZqZ23WqneadNapSRvVVp07DV2jB4/IUuo0PoQfb5S4M4DVPwghexrewBs+vj7AB93kUJlke1iNbMjR8yLfN/655s4QhG3bshj3D4cByODIdrtkON4yHE+uLrWY+bNjvii37Ycd+2LMfDuyHI/vhmv1ww344sb/YafbDhv2wZT/s2O+LPfvhwH547et/", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Month-Year" = _t, Order_Rank = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Month-Year", type text}, {"Order_Rank", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

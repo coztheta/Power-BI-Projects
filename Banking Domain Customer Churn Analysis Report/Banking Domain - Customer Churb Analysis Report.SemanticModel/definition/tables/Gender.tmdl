@@ -1,0 +1,35 @@
+table Gender
+	lineageTag: 12787797-4679-452c-aed4-adf4b4c1d525
+
+	column GenderID
+		dataType: int64
+		formatString: 0
+		lineageTag: 5cdc76fb-d8f1-486b-a810-3181539e8e02
+		summarizeBy: none
+		sourceColumn: GenderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column GenderCategory
+		dataType: string
+		lineageTag: aebbdf35-69ed-43f5-b541-a11c2ba1225f
+		summarizeBy: none
+		sourceColumn: GenderCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Gender-35e5dfc1-dcc3-4b62-9243-8e38bdb0cddb = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\HP\Downloads\Gender.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"GenderID", Int64.Type}, {"GenderCategory", type text}})
+				in
+				    #"Changed Type"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

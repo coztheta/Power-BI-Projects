@@ -1,0 +1,43 @@
+table Rating_Icon
+	lineageTag: 2b7079d5-784c-42b1-abe7-d6ebdc9abbeb
+
+	column Rating
+		dataType: int64
+		formatString: 0
+		lineageTag: 27f75cba-6f1f-424f-9497-1dc406b7bda0
+		summarizeBy: sum
+		sourceColumn: Rating
+
+		annotation SummarizationSetBy = Automatic
+
+	column Emoji
+		dataType: string
+		lineageTag: ea060f8b-dd59-4c99-b4ed-a1e0f8577ce1
+		summarizeBy: none
+		sourceColumn: Emoji
+
+		annotation SummarizationSetBy = Automatic
+
+	column Star
+		dataType: string
+		lineageTag: 64117b57-f9cd-4103-80e5-2a664ad57a26
+		summarizeBy: none
+		sourceColumn: Star
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Rating_Icon = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Data Analyst\Blinkit Report\Dataset\Rating_Icon.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Rating", Int64.Type}, {"Emoji", type text}, {"Star", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,59 @@
+table Sales_Measure
+	lineageTag: fab4d177-9cb7-4910-ab55-e1035b22e9a1
+
+	measure Value = SUM('Master Table'[Value])
+		lineageTag: 14639e46-158a-414d-93a3-02eeaf6c9073
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales in 2023' = CALCULATE([Value] , 'Date'[Year] = 2023 )
+		lineageTag: cad95ad2-5635-475a-ad74-c0f9e3f1a583
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales in 2024' = CALCULATE([Value] , 'Date'[Year] = 2024 )
+		lineageTag: 7f3e343e-5ac1-4362-abe7-00f506dadcf3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Growth %' = DIVIDE((Sales_Measure[Sales in 2024] - Sales_Measure[Sales in 2023]) , (Sales_Measure[Sales in 2023]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b61c7ed2-ef35-4d40-ab1d-239141648f74
+
+	measure 'TopN Area wise' =
+			
+			
+			VAR Rank_ = RANKX(ALL('Master Table'[area]), [Value],, DESC)
+			VAR rank_option =  SELECTEDVALUE(Rank_Table[Option])
+			RETURN
+			IF(Rank_ <= rank_option,[Value],BLANK() )
+		lineageTag: b40ed4a1-ca85-409b-9850-2d05c6d6fac3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Perioad Sales' =
+			
+			VAR selected_value = SELECTEDVALUE('Time Period Table'[Option ])
+			RETURN
+			CALCULATE([Value], 'Date'[MonthIndex] <= [Selected_Option])
+		lineageTag: 7901a0be-4ab2-4739-a7a2-dad267e2ee89
+
+	column Column1
+		dataType: string
+		lineageTag: a6c6d29e-a421-4eaf-84d2-93d109d9a8bd
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sales_Measure = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

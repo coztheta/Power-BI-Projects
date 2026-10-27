@@ -1,0 +1,17 @@
+table Auto_Date
+	lineageTag: ee460af4-621f-4974-9f56-94a96936e12e
+
+	column Option
+		lineageTag: fc301a43-782e-42b1-940c-fe03f6d7ef28
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Option]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Auto_Date = calculated
+		mode: import
+		source = DATATABLE("Option", STRING ,{ {"⬤"} })
+
+	annotation PBI_Id = c10d0e037f454977ac6ca122c4ecaad5
+
